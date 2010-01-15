@@ -26,6 +26,17 @@ class TestPlainLiteral(unittest.TestCase):
         literal = PlainLiteral("cat")
         self.assertEqual(literal.language, None)
 
+    def test_language_tag_is_normalized_to_lowercase(self):
+        literal = PlainLiteral("cat", 'EN')
+        self.assertEqual(literal.language, 'en')
+
+    def test_repr_shows_constructor(self):
+        self.assertEqual(repr(self.literal), "PlainLiteral('cat', 'en')")
+
+    def test_repr_without_language_tag_omits_language(self):
+        literal = PlainLiteral("cat")
+        self.assertEqual(repr(literal), "PlainLiteral('cat')")
+
     def test_equal_to_plain_literal_with_same_lexical_form_and_language(self):
         self.assertEqual(self.literal, PlainLiteral("cat", 'en'))
 
@@ -34,6 +45,9 @@ class TestPlainLiteral(unittest.TestCase):
 
     def test_not_equal_to_plain_literal_with_different_language(self):
         self.assertNotEqual(self.literal, PlainLiteral("cat", 'es'))
+
+    def test_not_equal_to_plain_literal_without_language(self):
+        self.assertNotEqual(self.literal, PlainLiteral("cat"))
 
     def test_not_equal_to_typed_literal(self):
         self.assertNotEqual(self.literal, TypedLiteral("cat", XSD_STRING))
@@ -60,6 +74,9 @@ class TestTypedLiteral(unittest.TestCase):
     def test_datatype_is_required(self):
         self.assertRaises(TypeError, TypedLiteral, "1")
 
+    def test_repr_shows_constructor(self):
+        self.assertEqual(repr(self.literal), "TypedLiteral('1', {!r})".format(XSD_STRING))
+
     def test_equal_to_typed_literal_with_same_lexical_form_and_datatype(self):
         self.assertEqual(self.literal, TypedLiteral("1", XSD_STRING))
 
@@ -75,5 +92,19 @@ class TestTypedLiteral(unittest.TestCase):
     def test_not_equal_to_string(self):
         self.assertNotEqual(self.literal, "1")
 
+class TestLiteral(unittest.TestCase):
+    def test_constructor_with_lexical_form_creates_plain_literal(self):
+        literal = Literal("cat")
+        self.assert_(isinstance(literal, PlainLiteral))
+
+    def test_constructor_with_language_creates_plain_literal(self):
+        literal = Literal("cat", 'en')
+        self.assert_(isinstance(literal, PlainLiteral))
+    
+    def test_constructor_with_uri_creates_typed_literal(self):
+        literal = Literal("cat", XSD_STRING)
+        self.assert_(isinstance(literal, TypedLiteral))
+
 if __name__ == '__main__':
     unittest.main()
+

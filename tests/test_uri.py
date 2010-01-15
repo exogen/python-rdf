@@ -23,6 +23,10 @@ class TestURI(unittest.TestCase):
     def test_equal_to_string(self):
         self.assertEqual(self.uri, "test")
 
+    def test_resource_with_uri_is_uri(self):
+        self.assert_(isinstance(Resource('test'), URI))
+
 
 if __name__ == '__main__':
     unittest.main()
+
