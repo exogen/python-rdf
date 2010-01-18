@@ -35,7 +35,9 @@ class PlainLiteral(Literal):
                 other.language == self.language)
 
     def __hash__(self):
-        return id(self)
+        return (hash(PlainLiteral) ^
+                hash(self.lexical_form) ^
+                hash(self.language))
 
 class TypedLiteral(Literal):
     __slots__ = 'datatype'
@@ -50,9 +52,10 @@ class TypedLiteral(Literal):
                 other.datatype == self.datatype)
 
     def __hash__(self):
-        return id(self)
+        return (hash(TypedLiteral) ^
+                hash(self.lexical_form) ^
+                hash(self.datatype))
 
     def __repr__(self):
         return "TypedLiteral({!r}, {!r})".format(self.lexical_form,
                                                  self.datatype)
-

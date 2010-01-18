@@ -21,11 +21,24 @@ class TestBlankNode(unittest.TestCase):
     def test_repr_shows_constructor(self):
         self.assertEqual(repr(self.b1), "BlankNode('b1')")
 
+    def test_equal_to_blank_node_with_same_node_id(self):
+        self.assertEqual(self.b1, BlankNode('b1'))
+
+    def test_hash_equal_to_blank_node_with_same_node_id(self):
+        self.assertEqual(hash(self.b1), hash(BlankNode('b1')))
+
+    def test_not_equal_to_blank_node_with_different_node_id(self):
+        self.assertNotEqual(self.b1, BlankNode('b2'))
+
+    def test_hash_not_equal_to_blank_node_with_different_node_id(self):
+        self.assertNotEqual(hash(self.b1), hash(BlankNode('b2')))
+
     def test_not_equal_to_string(self):
         self.assertNotEqual(self.b1, 'b1')
 
     def test_resource_without_uri_is_blank_node(self):
         self.assert_(isinstance(Resource(), BlankNode))
+
 
 if __name__ == '__main__':
     unittest.main()

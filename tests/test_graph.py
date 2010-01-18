@@ -24,7 +24,7 @@ class TestOneTripleGraph(unittest.TestCase):
         self.graph = Graph([self.triple])
 
     def test_repr_shows_constructor(self):
-        self.assertEqual(repr(self.graph), "Graph({%r})" % (self.triple,))
+        self.assertEqual(repr(self.graph), "Graph({{{!r}}})".format(self.triple))
 
 class TestGroundGraph(unittest.TestCase):
     def setUp(self):
