@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 from rdf.resource import Resource
 from rdf.uri import URI
 from rdf.namespace import TEST
-from rdf.testcases.testcase import TestCase
+from rdf.testcases.testcase import TestCase, Document
 from util import open_data_file
 
 
@@ -46,21 +46,23 @@ class TestPositiveParserTestCase(TestTestCase):
 
     def test_test_1_input_document_is_document(self):
         test = self._get_test(0)
-        self.assert_(isinstance(test.input_document, Resource))
+        self.assert_(isinstance(next(iter(test.input_documents)), Document))
 
     def test_test_1_input_document_uri(self):
         test = self._get_test(0)
-        self.assertEqual(test.input_document,
-            urljoin(TEST, 'amp-in-url/test001.rdf'))
+        self.assertEqual(set(test.input_documents),
+            {Document(TEST['RDF-XML-Document'],
+                      urljoin(TEST, 'amp-in-url/test001.rdf'))})
 
     def test_test_1_output_document_is_document(self):
         test = self._get_test(0)
-        self.assert_(isinstance(test.output_document, Resource))
+        self.assert_(isinstance(test.output_document, Document))
 
     def test_test_1_output_document_uri(self):
         test = self._get_test(0)
         self.assertEqual(test.output_document,
-            URI('http://www.w3.org/2000/10/rdf-tests/rdfcore/amp-in-url/test001.nt'))
+            Document(TEST['NT-Document'],
+                     urljoin(TEST, 'amp-in-url/test001.nt')))
 
 class TestNegativeEntailmentTestCase(TestTestCase):
     pass

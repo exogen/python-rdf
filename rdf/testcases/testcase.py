@@ -38,13 +38,29 @@ class TestCase:
         element = self._element.find(str(QName(TEST, 'inputDocument')))
         if element is not None:
             for doc in element:
-                resource = Resource(doc.get(QName(RDF, 'about')))
-                resource.type = TEST['RDF-XML-Document']
-                yield resource
+                yield Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
 
     @property
     def output_document(self):
         element = self._element.find(str(QName(TEST, 'outputDocument')))
         if element is not None:
-            return element.text
+            for doc in element:
+                return Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
+
+
+class Document:
+    def __init__(self, type, uri):
+        self.type = URI(type)
+        self.uri = URI(uri)
+
+    def __repr__(self):
+        return "Document({!r}, {!r})".format(self.type, self.uri)
+
+    def __eq__(self, other):
+        return (isinstance(other, Document) and
+                other.type == self.type and
+                other.uri == self.uri)
+
+    def __hash__(self):
+        return hash(Document) ^ hash(self.type) ^ hash(self.uri)
 
