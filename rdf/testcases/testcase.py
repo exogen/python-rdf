@@ -1,3 +1,4 @@
+import unittest
 from xml.etree.ElementTree import QName
 
 from rdf.resource import Resource
@@ -30,14 +31,6 @@ class TestCase:
         element = self._element.find(str(QName(TEST, 'status')))
         if element is not None:
             return element.text
-
-    @property
-    def approval(self):
-        element = self._element.find(str(QName(TEST, 'approval')))
-        if element is not None:
-            uri = element.get(QName(RDF, 'resource'))
-            if uri is not None:
-                return URI(uri)
 
     @property
     def description(self):
@@ -79,6 +72,19 @@ class EntailmentTest(TestCase):
             if uri is not None:
                 yield URI(uri)
 
+    @property
+    def premise_documents(self):
+        element = self._element.find(str(QName(TEST, 'premiseDocument')))
+        if element is not None:
+            for doc in element:
+                yield Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
+    @property
+    def conclusion_document(self):
+        element = self._element.find(str(QName(TEST, 'conclusionDocument')))
+        if element is not None:
+            for doc in element:
+                return Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
+
 class PositiveEntailmentTest(EntailmentTest):
     pass
 
@@ -86,9 +92,11 @@ class NegativeEntailmentTest(EntailmentTest):
     pass
 
 class Document:
-    def __init__(self, type, uri):
+    def __init__(self, type, uri=None):
+        if uri is not None:
+            uri = URI(uri)
         self.type = URI(type)
-        self.uri = URI(uri)
+        self.uri = uri
 
     def __repr__(self):
         return "Document({!r}, {!r})".format(self.type, self.uri)
@@ -100,4 +108,8 @@ class Document:
 
     def __hash__(self):
         return hash(Document) ^ hash(self.type) ^ hash(self.uri)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
