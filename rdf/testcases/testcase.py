@@ -4,19 +4,32 @@ from xml.etree.ElementTree import QName
 from rdf.resource import Resource
 from rdf.uri import URI
 from rdf.namespace import RDF, TEST
+from rdf.testcases.document import Document
 
 
-class TestCase:
-    def __new__(cls, element):
+class TestCase(unittest.TestCase):
+    _element = None
+    path_map = None
+
+    @classmethod
+    def from_element(cls, element):
         type = URI(QName(element.tag))
         cls = {TEST.PositiveParserTest: PositiveParserTest,
                TEST.NegativeParserTest: NegativeParserTest,
                TEST.PositiveEntailmentTest: PositiveEntailmentTest,
                TEST.NegativeEntailmentTest: NegativeEntailmentTest}.get(type, cls)
-        return super().__new__(cls)
+        test = cls()
+        test._element = element
+        return test
 
-    def __init__(self, element):
-        self._element = element
+    def setUp(self):
+        if self._element is None:
+            self.skipTest("_element not set: no test data found")
+        elif self.status != 'APPROVED':
+            self.skipTest("test status is {0.status}".format(self))
+
+    def runTest(self):
+        raise NotImplementedError
 
     @property
     def type(self):
@@ -38,6 +51,12 @@ class TestCase:
         if element is not None:
             return element.text
 
+    @property
+    def warning(self):
+        element = self._element.find(str(QName(TEST, 'warning')))
+        if element is not None:
+            return element.text
+
 class ParserTest(TestCase):
     @property
     def input_documents(self):
@@ -45,6 +64,9 @@ class ParserTest(TestCase):
         if element is not None:
             for doc in element:
                 yield Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
+
+    def setUp(self):
+        super().setUp()
 
 class PositiveParserTest(ParserTest):
     @property
@@ -54,8 +76,15 @@ class PositiveParserTest(ParserTest):
             for doc in element:
                 return Document(QName(doc.tag), doc.get(QName(RDF, 'about')))
 
+    def setUp(self):
+        super().setUp()
+
 class NegativeParserTest(ParserTest):
-    pass
+    def runTest(self):
+        for input_document in self.input_documents:
+            file = input_document.open(self.path_map)
+            reader = input_document.get_reader()
+            self.assertRaises(reader.ParseError, reader.read, file)
 
 class EntailmentTest(TestCase):
     @property
@@ -90,26 +119,4 @@ class PositiveEntailmentTest(EntailmentTest):
 
 class NegativeEntailmentTest(EntailmentTest):
     pass
-
-class Document:
-    def __init__(self, type, uri=None):
-        if uri is not None:
-            uri = URI(uri)
-        self.type = URI(type)
-        self.uri = uri
-
-    def __repr__(self):
-        return "Document({!r}, {!r})".format(self.type, self.uri)
-
-    def __eq__(self, other):
-        return (isinstance(other, Document) and
-                other.type == self.type and
-                other.uri == self.uri)
-
-    def __hash__(self):
-        return hash(Document) ^ hash(self.type) ^ hash(self.uri)
-
-
-if __name__ == '__main__':
-    unittest.main()
 

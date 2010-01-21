@@ -41,11 +41,11 @@ class NTriplesReader:
     ESCAPE = re.compile(r'\\(u[0-9A-F]{4}|U[0-9A-F]{8}|.)')
     ESCAPE_MAP = {'t': '\t', 'n': '\n', 'r': '\r', '"': '"', '\\': '\\'}
 
-    def read(self, stream, uri=None):
-        if isinstance(stream, str):
-            stream = StringIO(stream)
+    def read(self, lines, uri=None):
+        if isinstance(lines, str):
+            stream = StringIO(lines)
 
-        for line_num, line in enumerate(stream):
+        for line_num, line in enumerate(lines):
             while line:
                 match = self.LINE.match(line)
                 if match:

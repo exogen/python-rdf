@@ -14,4 +14,9 @@ class RDFXMLReader:
     ILLEGAL_NODES = ILLEGAL_TAGS | {RDF.li}
     ILLEGAL_PROPERTIES = ILLEGAL_TAGS | {RDF.Description}
 
-    pass
+    class ParseError(Exception):
+        pass
+
+    def read(self, lines, uri=None):
+        return iter([])
+
