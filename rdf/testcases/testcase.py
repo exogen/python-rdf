@@ -9,7 +9,6 @@ from rdf.testcases.document import Document
 
 class TestCase(unittest.TestCase):
     _element = None
-    path_map = None
 
     @classmethod
     def from_element(cls, element):

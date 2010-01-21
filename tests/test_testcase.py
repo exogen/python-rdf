@@ -133,10 +133,6 @@ class TestPositiveEntailmentTest(TestTestCase):
 class TestNegativeParserTest(TestTestCase):
     tag = ElementTree.QName(TEST, 'NegativeParserTest')
 
-    def setUp(self):
-        super().setUp()
-        self.test.path_map = PATH_MAP
-
     def test_has_uri(self):
         self.assertEqual(self.test.uri, TESTS['rdf-charmod-literals/Manifest.rdf#error001'])
 
