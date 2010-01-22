@@ -8,8 +8,6 @@ from rdf.testcases.document import Document
 
 
 class TestCase(unittest.TestCase):
-    _element = None
-
     @classmethod
     def from_element(cls, element):
         type = URI(QName(element.tag))
@@ -22,7 +20,7 @@ class TestCase(unittest.TestCase):
         return test
 
     def setUp(self):
-        if self._element is None:
+        if not hasattr(self, '_element'):
             self.skipTest("_element not set: no test data found")
         elif self.status != 'APPROVED':
             self.skipTest("test status is {0.status}".format(self))

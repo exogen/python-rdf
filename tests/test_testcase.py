@@ -51,7 +51,7 @@ class TestPositiveParserTest(TestTestCase):
     def test_has_status(self):
         self.assertEqual(self.test.status, 'APPROVED')
 
-    def test_has_description(self):
+    def test_description_is_none(self):
         self.assertEqual(self.test.description, None)
 
     def test_has_input_documents(self):
@@ -63,6 +63,9 @@ class TestPositiveParserTest(TestTestCase):
         self.assertEqual(self.test.output_document,
                          Document(TEST['NT-Document'],
                                   TESTS['amp-in-url/test001.nt']))
+
+    def test_warning_is_none(self):
+        self.assertEqual(self.test.warning, None)
 
     def test_runs(self):
         result = self.test.defaultTestResult()
@@ -104,6 +107,9 @@ class TestNegativeEntailmentTest(TestTestCase):
         self.assertEqual(self.test.conclusion_document,
                          Document(TEST['False-Document']))
 
+    def test_warning_is_none(self):
+        self.assertEqual(self.test.warning, None)
+
 class TestPositiveEntailmentTest(TestTestCase):
     tag = ElementTree.QName(TEST, 'PositiveEntailmentTest')
 
@@ -139,6 +145,9 @@ class TestPositiveEntailmentTest(TestTestCase):
         self.assertEqual(self.test.conclusion_document,
                          Document(TEST['False-Document']))
 
+    def test_warning_is_none(self):
+        self.assertEqual(self.test.warning, None)
+
 class TestNegativeParserTest(TestTestCase):
     tag = ElementTree.QName(TEST, 'NegativeParserTest')
 
@@ -161,6 +170,9 @@ class TestNegativeParserTest(TestTestCase):
         self.assertEqual(set(self.test.input_documents),
                          {Document(TEST['RDF-XML-Document'],
                                    TESTS['rdf-charmod-literals/error001.rdf'])})
+
+    def test_warning_is_none(self):
+        self.assertEqual(self.test.warning, None)
 
     def test_is_skipped_due_to_status(self):
         result = self.test.defaultTestResult()

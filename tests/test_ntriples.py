@@ -5,7 +5,7 @@ from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.namespace import Namespace
 from rdf.literal import PlainLiteral, TypedLiteral
-from rdf.ntriples import NTriplesReader, ParseError
+from rdf.ntriples import NTriplesReader, ParseError, InvalidEscapeSequence
 from util import open_data_file
 
 
@@ -25,6 +25,11 @@ class TestNTriples(unittest.TestCase):
     def test_is_ntriples_reader(self):
         self.assert_(isinstance(self.reader, NTriplesReader))
 
+    def test_well_formed_line_yields_triple(self):
+        document = '<http://example.org/test> <http://example.org/property> "test" .'
+        self.assertEqual(next(self.reader.read(document)),
+                         (EX.test, EX.property, PlainLiteral("test")))
+
     def test_no_subject_raises_error(self):
         document = "."
         self.assertRaises(ParseError, next, self.reader.read(document))
@@ -40,8 +45,8 @@ class TestNTriples(unittest.TestCase):
         self.assertRaises(ParseError, next, self.reader.read(document + "."))
 
     def test_invalid_escape_sequence_raises_error(self):
-        document = '<a> <b> "invalid:\\c" .'
-        self.assertRaises(ParseError, next, self.reader.read(document))
+        document = '<http://example.org/test> <http://example.org/property> "invalid:\\x" .'
+        self.assertRaises(InvalidEscapeSequence, next, self.reader.read(document))
 
     def test_empty_document_yields_no_triples(self):
         triples = list(self.reader.read(""))

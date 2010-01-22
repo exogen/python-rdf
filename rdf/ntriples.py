@@ -43,9 +43,11 @@ class NTriplesReader:
 
     def read(self, lines, uri=None):
         if isinstance(lines, str):
-            stream = StringIO(lines)
+            lines = StringIO(lines)
 
         for line_num, line in enumerate(lines):
+            if isinstance(line, (bytes, bytearray)):
+                line = line.decode()
             while line:
                 match = self.LINE.match(line)
                 if match:
@@ -65,29 +67,19 @@ class NTriplesReader:
     def _subject(self, token, uri):
         if token.startswith('<'):
             return self._uriref(token, uri)
-        elif token.startswith('_:'):
-            return self._node_id(token)
         else:
-            raise ParseError("Subject did not match 'uriref' or 'nodeID' "
-                             "patterns: {!r}".format(token))
+            return self._node_id(token)
     
     def _predicate(self, token, uri):
-        if token.startswith('<'):
-            return self._uriref(token, uri)
-        else:
-            raise ParseError("Predicate did not match 'uriref' pattern: "
-                             "{!r}".format(token))
+        return self._uriref(token, uri)
 
     def _object(self, token, uri):
         if token.startswith('<'):
             return self._uriref(token, uri)
         elif token.startswith('_:'):
             return self._node_id(token)
-        elif token.startswith('"'):
-            return self._literal(token, uri)
         else:
-            raise ParseError("Object did not match 'uriref', 'nodeID' or "
-                             "'literal' patterns: {!r}".format(token))
+            return self._literal(token, uri)
 
     def _uriref(self, token, uri):
         return URI(urljoin(uri or '', self._string(token[1:-1])))

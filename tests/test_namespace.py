@@ -26,6 +26,12 @@ class TestNamespace(unittest.TestCase):
     def test_getitem_returns_new_uri(self):
         self.assertEqual(self.namespace['test'], URI('http://example.org/test'))
 
+    def test_getitem_with_number_returns_character(self):
+        self.assertEqual(self.namespace[0], 'h')
+
+    def test_getitem_with_slice_returns_string(self):
+        self.assertEqual(self.namespace[7:14], 'example')
+
     def test_getattr_returns_new_uri(self):
         self.assertEqual(self.namespace.test, URI('http://example.org/test'))
 
