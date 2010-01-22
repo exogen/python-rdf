@@ -77,6 +77,14 @@ class PositiveParserTest(ParserTest):
 
     def setUp(self):
         super().setUp()
+        self.input_triples = set()
+        for document in self.input_documents:
+            triples = document.read(self.path_map)
+            self.input_triples.update(triples)
+        self.output_triples = set(self.output_document.read(self.path_map))
+
+    def runTest(self):
+        self.assertSetEqual(self.input_triples, self.output_triples)
 
 class NegativeParserTest(ParserTest):
     def runTest(self):

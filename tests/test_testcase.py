@@ -37,6 +37,10 @@ class TestTestCase(unittest.TestCase):
 class TestPositiveParserTest(TestTestCase):
     tag = ElementTree.QName(TEST, 'PositiveParserTest')
 
+    def setUp(self):
+        super().setUp()
+        self.test.path_map = PATH_MAP
+
     def test_has_uri(self):
         self.assertEqual(self.test.uri,
                          TESTS['amp-in-url/Manifest.rdf#test001'])
@@ -59,6 +63,11 @@ class TestPositiveParserTest(TestTestCase):
         self.assertEqual(self.test.output_document,
                          Document(TEST['NT-Document'],
                                   TESTS['amp-in-url/test001.nt']))
+
+    def test_runs(self):
+        result = self.test.defaultTestResult()
+        self.test.run(result)
+        self.assertEqual(result.testsRun, 1)
 
 class TestNegativeEntailmentTest(TestTestCase):
     tag = ElementTree.QName(TEST, 'NegativeEntailmentTest')
