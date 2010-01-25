@@ -3,14 +3,11 @@ from itertools import islice
 
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
-from rdf.namespace import Namespace
+from rdf.namespace import Namespace, RDFS
 from rdf.literal import PlainLiteral, TypedLiteral
-from rdf.ntriples import NTriplesReader, ParseError, InvalidEscapeSequence
-from util import open_data_file
+from rdf.syntax.ntriples import NTriplesReader, ParseError, InvalidEscapeSequence
+from util import open_data_file, EX
 
-
-EX = Namespace('http://example.org/')
-RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
 
 class TestNTriples(unittest.TestCase):
     def setUp(self):
@@ -18,9 +15,7 @@ class TestNTriples(unittest.TestCase):
         self.triples = self.reader.read(open_data_file('test.nt'))
 
     def _get_triple(self, index):
-        for triple in islice(self.triples, index, index + 1):
-            return triple
-        raise IndexError
+        return next(islice(self.triples, index, index + 1))
 
     def test_is_ntriples_reader(self):
         self.assert_(isinstance(self.reader, NTriplesReader))

@@ -39,7 +39,3 @@ class TestURI(unittest.TestCase):
         qname = QName('http://example.org/', 'test')
         self.assertEqual(Resource(qname), URI('http://example.org/test'))
 
-
-if __name__ == '__main__':
-    unittest.main()
-

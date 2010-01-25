@@ -142,6 +142,3 @@ class TestLiteral(unittest.TestCase):
         literal = Literal("cat", XSD_STRING)
         self.assert_(isinstance(literal, TypedLiteral))
 
-if __name__ == '__main__':
-    unittest.main()
-

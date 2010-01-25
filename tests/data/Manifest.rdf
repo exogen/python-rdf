@@ -13,7 +13,7 @@
    <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Sep/0326.html" />
    <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
    <!-- <test:description>
-	-if we have a description, jjjfill it in here -
+	-if we have a description, fill it in here -
    </test:description> -->
 
    <test:inputDocument>

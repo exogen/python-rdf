@@ -46,8 +46,6 @@ class NTriplesReader:
             lines = StringIO(lines)
 
         for line_num, line in enumerate(lines):
-            if isinstance(line, (bytes, bytearray)):
-                line = line.decode()
             while line:
                 match = self.LINE.match(line)
                 if match:

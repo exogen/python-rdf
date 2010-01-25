@@ -1,6 +1,6 @@
 import unittest
 
-from rdf.rdfxml import RDFXMLReader
+from rdf.syntax.rdfxml import RDFXMLReader
 
 
 class TestRDFXMLReader(unittest.TestCase):

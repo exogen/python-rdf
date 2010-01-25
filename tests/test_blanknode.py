@@ -39,7 +39,3 @@ class TestBlankNode(unittest.TestCase):
     def test_resource_without_uri_is_blank_node(self):
         self.assert_(isinstance(Resource(), BlankNode))
 
-
-if __name__ == '__main__':
-    unittest.main()
-
