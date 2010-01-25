@@ -1,0 +1,425 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#test001">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	A simple datatype production; a language+datatype production. Simply duplicate the
+	constructs under http://www.w3.org/2000/10/rdf-tests/rdfcore/ntriples/test.nt
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#test002">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	A parser is not required to know about well-formed datatyped literals.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#non-well-formed-literal-1">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	Without datatype knowledge, a 'badly-formed' datatyped literal cannot be detected.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+<test:NegativeEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#non-well-formed-literal-2">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	With appropriate datatype knowledge, a 'badly-formed' datatyped literal can be detected.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test002b.nt" />
+   </test:conclusionDocument>
+
+</test:NegativeEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#semantic-equivalence-within-type-1">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	Demonstrating the semantic equivalence of two lexical forms of the same datatyped value.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test003a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test003b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#semantic-equivalence-within-type-2">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />
+   <test:description>
+	As semantic-equivalence-within-type-1; the entailment works both ways.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test003b.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test003a.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:NegativeEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-important-for-non-dt-entailment-1">
+
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />-->
+   <test:description>
+This test used to claim:
+	Language attributes on a datatyped literal make them distinct for the purposes
+	of non-datatype-aware entailments.
+There are no longer language tags on datatyped literals.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004b.nt" />
+   </test:conclusionDocument>
+
+</test:NegativeEntailmentTest>
+
+<test:NegativeEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-important-for-non-dt-entailment-2">
+
+   <test:status>OBSOLETE</test:status>
+   <!--<test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" />-->
+   <test:description>
+This test used to claim:
+	Language attributes on a datatyped literal make them distinct for the purposes
+	of non-datatype-aware entailments.
+There are no longer language tags on datatyped literals.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004b.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004c.nt" />
+   </test:conclusionDocument>
+
+</test:NegativeEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-ignored-for-numeric-types-1">
+
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" /> -->
+   <test:description>
+Obsoleted: datatyped literals have no language tag.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-ignored-for-numeric-types-2">
+
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" /> -->
+   <test:description>
+Obsoleted: datatyped literals have no language tag.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004b.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004c.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-ignored-for-numeric-types-3">
+
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Nov/0611.html" /> -->
+   <test:description>
+Obsoleted: datatyped literals have no language tag.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004c.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test004a.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#semantic-equivalence-between-datatypes">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+   <test:description>
+	Members of different datatypes may be semantically equivalent.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#decimal" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test005a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test005b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#range-clash">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+   <test:description>
+	Where sufficient DT knowledge is available, a range clash may be detected; the document then
+	contains a contradiction.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#decimal" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test006.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:False-Document />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#language-and-xml-literal">
+
+   <test:status>OBSOLETE</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+Language does not affect the denotation of rdf:XMLLiteral. NOTE that this
+is a change from previous versions of the spec.
+Langauge tags do not live on XMLLiterals.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test007a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test007b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#test008">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0131.html" />
+   <test:description>
+	From decisions listed in http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0098.html
+   </test:description>
+
+    <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#simpleEntailment" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test008a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test008b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:NegativeEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#test009">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0131.html" />
+   <test:description>
+	From decisions listed in http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0098.html
+   </test:description>
+
+    <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#simpleEntailment" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test009a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test009b.nt" />
+   </test:conclusionDocument>
+
+</test:NegativeEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#test010">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0131.html" />
+   <test:description>
+	From decisions listed in http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Oct/0098.html
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test010.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:False-Document />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/Manifest.rdf#plain-literal-and-xsd-string">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Sep/0003.html" />
+   <test:description>
+	A plain literal denotes the same thing as its corresponding xsd:string,
+	where one exists.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test011a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes/test011b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+</rdf:RDF>

@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#error001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/error001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#error002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/error002.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#error003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/error003.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test003.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test003.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test004.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test004.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test005.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test005.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test006.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test006.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test007">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test007.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test007.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test008">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test008.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test008.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test009">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test009.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test009.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test010">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test010.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test010.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test011">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test011.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test011.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test012">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test012.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test012.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test013">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test013.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test013.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test014">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test014.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test014.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test015">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test015.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test015.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test016">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+
+   <test:description>
+Like rdfms-empty-property-elements/test001.rdf but with a processing instruction 
+as the only content of the otherwise empty element.
+   </test:description> 
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test016.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test016.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/Manifest.rdf#test017">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-empty-property-elements" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+
+   <test:description>
+Like rdfms-empty-property-elements/test001.rdf but with a comment
+as the only content of the otherwise empty element.
+   </test:description> 
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test017.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-empty-property-elements/test017.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+
+
+
+</rdf:RDF>
+

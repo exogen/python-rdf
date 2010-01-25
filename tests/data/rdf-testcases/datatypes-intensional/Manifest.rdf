@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+<test:NegativeEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes-intensional/Manifest.rdf#xsd-integer-decimal-compatible">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Sep/0093.html" />
+   <test:description>
+The claim that xsd:integer is a subClassOF xsd:decimal is not
+incompatible with using the intensional semantics for datatypes.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#decimal" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes-intensional/test001.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:False-Document />
+   </test:conclusionDocument>
+
+</test:NegativeEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes-intensional/Manifest.rdf#xsd-integer-string-incompatible">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Sep/0093.html" />
+   <test:description>
+The claim that xsd:integer is a subClassOF xsd:string is
+incompatible with using the intensional semantics for datatypes.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes#" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+   <test:datatypeSupport rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/datatypes-intensional/test002.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:False-Document />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+
+
+</rdf:RDF>

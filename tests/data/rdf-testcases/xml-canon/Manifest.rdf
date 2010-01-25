@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xml-canon/Manifest.rdf#test001">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Aug/0138.html" />
+   <test:description>
+Demonstrating the canonicalisation of XMLLiterals.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xml-canon/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xml-canon/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+
+</rdf:RDF>

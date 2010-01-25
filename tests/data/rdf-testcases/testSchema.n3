@@ -1,0 +1,107 @@
+#Processed by Id: cwm.py,v 1.103 2002/08/08 02:03:35 timbl Exp 
+        #    using base http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema
+        
+#  Notation3 generation by
+#       notation3.py,v 1.114 2002/08/07 14:32:21 timbl Exp
+
+#   Base was: http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema
+     @prefix : <../../../01/rdf-schema#> .
+     @prefix rdf: </1999/02/22-rdf-syntax-ns#> .
+     @prefix test: <testSchema#> .
+    
+    test:MiscellaneousTest     a :Class;
+         :comment "This manifest entry is used to describe test cases that do not fall into one of the categories. It may have several associated files, indicated in <test:document> elements.";
+         :isDefinedBy test:;
+         :label "Miscellaneous Test" .
+    
+    test:NT-Document     a :Class;
+         :comment "";
+         :isDefinedBy test:;
+         :label "N-Triples Document" .
+    
+    test:NegativeEntailmentTest     a :Class;
+         :comment "These tests consist of one input document. The document is not legal RDF/XML. A parser is considered to pass the test if it correctly holds the input document to be in error.";
+         :isDefinedBy test:;
+         :label "Negative Entailment Test" .
+    
+    test:NegativeParserTest     a :Class;
+         :comment "These tests consist of one input document. The document is not legal RDF/XML. A parser is considered to pass the test if it correctly holds the input document to be in error.";
+         :isDefinedBy test:;
+         :label "Negative Parser Test" .
+    
+    test:PositiveEntailmentTest     a :Class;
+         :comment "These tests are specified by one or more premise documents (in RDF/XML or N-Triples) together with a single conclusion document. In addition, the rules used for determining entailment are specified by test:entailmentRules elements.";
+         :isDefinedBy test:;
+         :label "Positive Entailment Test" .
+    
+    test:PositiveParserTest     a :Class;
+         :comment "These tests consist of one (or more) input documents in RDF/XML as revised. The expected result is defined using the N-Triples syntax.";
+         :isDefinedBy test:;
+         :label "Positive Parser Test" .
+    
+    test:RDF-XML-Document     a :Class;
+         :comment "";
+         :isDefinedBy test:;
+         :label "RDF/XML Document" .
+    
+    test:approval     a rdf:Property;
+         :comment "Contains a reference to the minutes of the RDF Core WG meeting where the test case status was last changed.";
+         :isDefinedBy test:;
+         :label "Approval" .
+    
+    test:conclusionDocument     a rdf:Property;
+         :comment "A conclusion document of an entailment.";
+         :isDefinedBy test:;
+         :label "Conclusion Document" .
+    
+    test:description     a rdf:Property;
+         :comment "A human-readable summary of the test case.";
+         :isDefinedBy test:;
+         :label "Description" .
+    
+    test:discussion     a rdf:Property;
+         :comment "Contains a pointer to other discussion surrounding this test case or the associated issue.";
+         :isDefinedBy test:;
+         :label "Discussion" .
+    
+    test:document     a rdf:Property;
+         :comment "A test case document for a miscellaneous test.";
+         :isDefinedBy test:;
+         :label "Document" .
+    
+    test:entailmentRules     a rdf:Property;
+         :comment "The rules for determining entailment - presently RDF alone or RDF and RDFS.";
+         :isDefinedBy test:;
+         :label "Entailment Rules" .
+    
+    test:inputDocument     a rdf:Property;
+         :comment "A test case input document.";
+         :isDefinedBy test:;
+         :label "Input Document" .
+    
+    test:issue     a rdf:Property;
+         :comment "Contains a pointer to the associated issue on the RDF Core WG Tracking document.";
+         :isDefinedBy test:;
+         :label "Issue" .
+    
+    test:outputDocument     a rdf:Property;
+         :comment "A test case output document";
+         :isDefinedBy test:;
+         :label "Output Document" .
+    
+    test:premiseDocument     a rdf:Property;
+         :comment "A premise document of an entailment.";
+         :isDefinedBy test:;
+         :label "Premise Document" .
+    
+    test:status     a rdf:Property;
+         :comment "Indicates the status of the test according to RDF Core WG process.";
+         :isDefinedBy test:;
+         :label "Status" .
+    
+    test:warning     a rdf:Property;
+         :comment "Indicates that while the test should pass, it may generate a warning.";
+         :isDefinedBy test:;
+         :label "Warning" .
+    
+#ENDS

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfs-entailment/Manifest.rdf#test001">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Nov/0063.html" />
+   <test:issue rdf:resource="http://www.w3.org/2001/sw/RDFCore/20031010-comments/#entailment-from-inconsistent-graph" />
+ 
+   <test:description>
+Indicating a simple inconsistency drawn from RDFS. RDFS
+can only produce inconsistencies through badly-formed XMLLiteral
+datatypes.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfs-entailment/test001.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:False-Document />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfs-entailment/Manifest.rdf#test002">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Nov/0063.html" />
+   <test:issue rdf:resource="http://www.w3.org/2001/sw/RDFCore/20031010-comments/#entailment-from-inconsistent-graph" />
+ 
+   <test:description>
+From an inconsistent graph, any entailment can be drawn. This is an
+example.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:False-Document />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfs-entailment/test002.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+
+</rdf:RDF>

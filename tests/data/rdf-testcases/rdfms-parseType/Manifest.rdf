@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/Manifest.rdf#error001">
+
+   <test:status>NOT_APPROVED</test:status>
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/error001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/Manifest.rdf#error002">
+
+   <test:status>NOT_APPROVED</test:status>
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/error002.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/Manifest.rdf#error003">
+
+   <test:status>NOT_APPROVED</test:status>
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-parseType/error003.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+
+</rdf:RDF>
+

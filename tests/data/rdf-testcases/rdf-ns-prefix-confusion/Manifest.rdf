@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0002.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0003.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0004.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0005.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0006.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0007">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0007.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0008">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0008.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#error0009">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	This is again legal RDF
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/error0009.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0003.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0003.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0004.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0004.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0005.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0005.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0006.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0006.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0007">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	rdf:aboutEach no longer valid.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0007.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0007.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0008">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>OBSOLETE</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jun/0008.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0008.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0008.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0009">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0009.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0009.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0010">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0010.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0010.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0011">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0011.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0011.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0012">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0012.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0012.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0013">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0013.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0013.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/Manifest.rdf#test0014">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-ns-prefix-confusion" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://www.w3.org/2000/11/mr76/rdfc25May.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0014.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-ns-prefix-confusion/test0014.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+
+</rdf:RDF>
+

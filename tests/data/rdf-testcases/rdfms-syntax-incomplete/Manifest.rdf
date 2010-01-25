@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	 xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	rdf:nodeID can be used to label a blank node.
+   </test:description>
+
+   <test:inputDocument>
+     <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#test002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	rdf:nodeID can be used to label a blank node.
+      These have file scope and are distinct from any
+      unlabelled blank nodes.
+   </test:description>
+
+   <test:inputDocument>
+     <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#test003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+     On an rdf:Description or typed node rdf:nodeID behaves
+     similarly to an rdf:about.
+   </test:description>
+
+   <test:inputDocument>
+     <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test003.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test003.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#test004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+     On a property element rdf:nodeID behaves
+     similarly to rdf:resource.
+   </test:description>
+
+   <test:inputDocument>
+     <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test004.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test004.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  The value of rdf:nodeID must match the XML Name production,
+        (as modified by XML Namespaces). 
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  The value of rdf:nodeID must match the XML Name production,
+        (as modified by XML Namespaces). 
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error002.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  The value of rdf:nodeID must match the XML Name production,
+        (as modified by XML Namespaces). 
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error003.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  Cannot have rdf:nodeID and rdf:ID.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error004.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  Cannot have rdf:nodeID and rdf:about.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error005.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/Manifest.rdf#error006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-syntax-incomplete" />
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+
+   <test:description>
+	  Cannot have rdf:nodeID and rdf:resource.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/error006.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+
+
+</rdf:RDF>

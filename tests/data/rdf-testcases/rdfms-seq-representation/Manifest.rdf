@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-seq-representation" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002May/0159.html" />
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/Manifest.rdf#test002">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+   <test:description>
+	Statement of the MT closure rule.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/empty.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test002.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/Manifest.rdf#test003">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+   <test:description>
+	Statement of the MT closure rule.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test003a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test003b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/Manifest.rdf#test004">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jan/0025.html" />
+   <test:description>
+	Statement of the MT closure rule.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/empty.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-seq-representation/test004.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+
+</rdf:RDF>
+

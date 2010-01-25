@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-duplicate-member-props/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-duplicate-member-props" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002May/0028.html" />
+   <test:description>
+The question posed to the RDF WG was: should an RDF document containing
+multiple rdf:_n properties (with the same n) on an element be rejected as
+illegal?
+The WG decided that a parser should accept that case as legal RDF.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-duplicate-member-props/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-duplicate-member-props/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+
+</rdf:RDF>
+

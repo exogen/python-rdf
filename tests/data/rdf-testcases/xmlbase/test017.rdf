@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright World Wide Web Consortium, (Massachusetts Institute of
+  Technology, Institut National de Recherche en Informatique et en
+  Automatique, Keio University).
+
+  All Rights Reserved.
+
+  Please see the full Copyright clause at
+  <http://www.w3.org/Consortium/Legal/copyright-software.html>
+
+  Description: Stacking of relative URIs in xml:base
+  Author: Dan Brickley (danbri@w3.org)
+
+  $Id: test017.rdf,v 1.3 2005/09/01 16:43:20 danbri Exp $
+
+This case was noted Post-RDFCore, see:
+http://lists.w3.org/Archives/Public/www-rdf-comments/2005JulSep/0000.html
+
+-->
+
+<rdf:RDF xml:base="http://example.org/" 
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://www.w3.org/" xml:base="test1/">
+    <dc:title>World Wide Web Consortium</dc:title>
+    <dc:source rdf:resource="test2/"/>
+ </rdf:Description>
+
+</rdf:RDF>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/pfps-10/Manifest.rdf#non-well-formed-literal-1">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/www-rdf-comments/2003AprJun/0080.html" />
+   <test:description>
+Test that ICEXT(I(rdfs:Literal)) is a subset of LV.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+   <test:entailmentRules rdf:resource="http://www.w3.org/2000/01/rdf-schema#" />
+
+   <test:premiseDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/pfps-10/test001a.nt" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/pfps-10/test001b.nt" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+</rdf:RDF>

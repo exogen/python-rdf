@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#error001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>NOT_APPROVED</test:status>
+   <test:description>
+	This test case concerns URIs relative to a non-relative URI scheme base.
+	It's beyond the scope of the WG to deal with this; it has therefore not
+	been approved.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/error001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test003.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test003.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test004.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test004.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>OBSOLETE</test:status>
+   <!-- <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" /> -->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+This is not valid rdf/xml. The embedding of RDF/XML in other XML formats is
+beyond the scope of these test cases. Test case withdrawn.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test005.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test005.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test006.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test006.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test007">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test007.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test007.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test008">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test008.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test008.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test009">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test009.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test009.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test010">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test010.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test010.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test011">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test011.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test011.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test012">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>WITHDRAWN</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Oct/0217.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+Test case WITHDRAWN in light of 2396bis
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test012.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test012.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test013">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test013.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test013.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test014">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+	Test output corrected to use correct base URL.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test014.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test014.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test015">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>NOT_APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+This test case is deprecated. The use of mailto: URIs with xml:base is not within the scope of
+RDFCore's charter to sort out.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test015.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test015.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test016">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>NOT_APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <test:description>
+This test case is deprecated. The use of mailto: URIs with xml:base is not within the scope of
+RDFCore's charter to sort out.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test016.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test016.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/Manifest.rdf#test017">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdfms-xml-base" />
+   <test:status>NOT_APPROVED</test:status>
+<!--
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2002Mar/0235.html" />
+-->
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+
+  <test:discussion rdf:resource="http://lists.w3.org/Archives/Public/www-rdf-comments/2005JulSep/0000.html" /> 
+
+   <test:description>
+     A stack of relative URIs within xml:base combine to give complete URI.
+   </test:description>
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test017.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/xmlbase/test017.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+</rdf:RDF>
+

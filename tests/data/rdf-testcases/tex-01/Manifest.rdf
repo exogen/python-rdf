@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+
+
+
+
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/Manifest.rdf#language-tag-case-1">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jul/0263.html" />
+ 
+   <test:description>
+	The case of the language tag is not significant.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+
+   <test:premiseDocument>
+      <test:RDF-XML-Document 
+     rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/test001.rdf" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:RDF-XML-Document 
+     rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/test002.rdf" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+<test:PositiveEntailmentTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/Manifest.rdf#language-tag-case-2">
+
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2003Jul/0263.html" />
+ 
+   <test:description>
+	The case of the language tag is not significant.
+   </test:description>
+
+   <test:entailmentRules rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+
+   <test:premiseDocument>
+      <test:RDF-XML-Document 
+     rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/test002.rdf" />
+   </test:premiseDocument>
+
+   <test:conclusionDocument>
+      <test:RDF-XML-Document 
+     rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/tex-01/test001.rdf" />
+   </test:conclusionDocument>
+
+</test:PositiveEntailmentTest>
+
+
+
+
+
+</rdf:RDF>

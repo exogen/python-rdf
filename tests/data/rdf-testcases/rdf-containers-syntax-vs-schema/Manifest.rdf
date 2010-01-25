@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns:test="http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#"
+>
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#error001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/error001.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:NegativeParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#error002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Nov/0651.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/error002.rdf" />
+   </test:inputDocument>
+
+</test:NegativeParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test001">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test001.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test001.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test002">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test002.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test002.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test003">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test003.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test003.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test004">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test004.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test004.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test005">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>OBSOLETED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Nov/0651.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test005.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test005.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test006">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test006.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test006.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test007">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test007.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test007.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+<test:PositiveParserTest rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/Manifest.rdf#test008">
+
+   <test:issue rdf:resource="http://www.w3.org/2000/03/rdf-tracking/#rdf-containers-syntax-vs-schema" />
+   <test:status>APPROVED</test:status>
+   <test:approval rdf:resource="http://lists.w3.org/Archives/Public/w3c-rdfcore-wg/2001Jul/0000.html" />
+   <!-- <test:discussion rdf:resource="pointer to archived email or other discussion" /> -->
+   <!-- <test:description>
+	-if we have a description, fill it in here -
+   </test:description> -->
+
+   <test:inputDocument>
+      <test:RDF-XML-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test008.rdf" />
+   </test:inputDocument>
+
+   <test:outputDocument>
+      <test:NT-Document rdf:about="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdf-containers-syntax-vs-schema/test008.nt" />
+   </test:outputDocument>
+
+</test:PositiveParserTest>
+
+
+
+</rdf:RDF>
+
