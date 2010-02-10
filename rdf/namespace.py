@@ -18,4 +18,5 @@ class Namespace(URI):
 RDF = Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
 TEST = Namespace('http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#')
+XML = Namespace('http://www.w3.org/XML/1998/namespace')
 XSD = Namespace('http://www.w3.org/2001/XMLSchema#')

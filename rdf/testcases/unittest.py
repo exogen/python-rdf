@@ -4,24 +4,34 @@ from rdf.namespace import TEST
 from rdf.testcases.test import Test
 
 
+__unittest = 1
+
 class RDFTestCase(unittest.TestCase):
     TYPE_MAP = {}
+    test = None
 
     @classmethod
     def from_test(cls, test):
         cls = cls.TYPE_MAP.get(test.type, cls)
         test_case = cls()
         test_case.test = test
+        if test.description:
+            test_case.runTest.__func__.__doc__ = test.description.strip()
         return test_case
 
     def setUp(self):
-        if getattr(self, 'test', None) is None:
+        if self.test is None:
             self.skipTest("'test' attribute not set. abstract test case?")
         elif self.test.status != 'APPROVED':
             self.skipTest("test status is {0}".format(self.test.status))
 
     def runTest(self):
         raise NotImplementedError
+
+    def id(self):
+        if self.test is not None:
+            return self.test.uri
+        return super().id()
 
 class ParserTestCase(RDFTestCase):
     pass
@@ -67,6 +77,12 @@ RDFTestCase.TYPE_MAP.update({
 
 class RDFTestSuite(unittest.TestSuite):
     @classmethod
-    def from_manifest(cls, manifest):
-        return cls(RDFTestCase.from_test(test) for test in manifest)
+    def from_manifest(cls, manifest, opener=None):
+        suite = cls()
+        for test in manifest:
+            test_case = RDFTestCase.from_test(test)
+            if opener is not None:
+                test_case.opener = opener
+            suite.addTest(test_case)
+        return suite
 

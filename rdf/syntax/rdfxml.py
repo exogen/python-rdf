@@ -1,8 +1,9 @@
-from rdf.namespace import Namespace
+from xml.etree import ElementTree
+from xml.etree.ElementTree import QName
 
+from rdf.uri import URI
+from rdf.namespace import Namespace, RDF, XML
 
-RDF = Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
-XML = Namespace('http://www.w3.org/XML/1998/namespace')
 
 class RDFXMLReader:
     RESERVED_ATTRS = {RDF.about, RDF.resource, RDF.ID, RDF.nodeID, XML.lang,
@@ -18,5 +19,19 @@ class RDFXMLReader:
         pass
 
     def read(self, lines, uri=None):
-        return iter([])
+        if isinstance(lines, str):
+            root = ElementTree.XML(lines)
+        else:
+            root = ElementTree.parse(lines).getroot()
+        for element in root:
+            for triple in self._node_element(element):
+                yield triple
+
+    def _node_element(self, element):
+        if URI(QName(element.tag)) in self.ILLEGAL_NODES:
+            raise self.ParseError("Illegal node tag: {!r}".format(element.tag))
+        yield None
+
+
+            
 
