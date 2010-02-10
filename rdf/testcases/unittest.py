@@ -65,3 +65,8 @@ RDFTestCase.TYPE_MAP.update({
     TEST.NegativeEntailment: NegativeEntailmentTestCase,
     TEST.MiscellaneousTest: MiscellaneousTestCase})
 
+class RDFTestSuite(unittest.TestSuite):
+    @classmethod
+    def from_manifest(cls, manifest):
+        return cls(RDFTestCase.from_test(test) for test in manifest)
+

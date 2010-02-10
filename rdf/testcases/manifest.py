@@ -3,7 +3,7 @@ from xml.etree import ElementTree
 from rdf.testcases.test import Test
 
 
-class Manifest:
+class Manifest(object):
     def __init__(self, lines):
         if isinstance(lines, str):
             self._element = ElementTree.XML(lines)

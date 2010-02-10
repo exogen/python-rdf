@@ -3,9 +3,10 @@ from xml.etree.ElementTree import XML
 
 from rdf.namespace import Namespace, TEST
 from rdf.testcases.document import Document
+from rdf.testcases.manifest import Manifest
 from rdf.testcases.test import Test
-from rdf.testcases.unittest import RDFTestCase
-from util import EX, TESTS, TEST_OPENER
+from rdf.testcases.unittest import RDFTestCase, RDFTestSuite
+from util import open_data_file, EX, TESTS, TEST_OPENER
 
 
 class TestRDFTestCase(unittest.TestCase):
@@ -88,5 +89,22 @@ class TestMiscellaneousTestCase(TestRDFTestCase):
         self.assertEqual(self.result.wasSuccessful(), False)
 
 class TestRDFTestSuite(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.file = open_data_file('Manifest.rdf')
+        self.manifest = Manifest(self.file)
+        self.suite = RDFTestSuite.from_manifest(self.manifest)
+        for test_case in self.suite:
+            test_case.opener = TEST_OPENER
+        self.result = unittest.TestResult()
+        self.suite.run(self.result)
+
+    def test_has_same_length_as_manifest(self):
+        tests = list(self.suite)
+        self.assertEqual(len(self.manifest), len(tests))
+
+    def test_runs_tests(self):
+        self.assertEqual(self.result.testsRun, 266)
+    
+    def test_skips_tests_without_approved_status(self):
+        self.assertEqual(len(self.result.skipped), 54)
 
