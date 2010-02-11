@@ -5,7 +5,10 @@ class BlankNode:
         self.node_id = node_id
 
     def __repr__(self):
-        return "BlankNode({!r})".format(self.node_id)
+        if self.node_id is not None:
+            return "BlankNode({!r})".format(self.node_id)
+        else:
+            return "BlankNode()"
 
     def __eq__(self, other):
         return isinstance(other, BlankNode) and other.node_id == self.node_id

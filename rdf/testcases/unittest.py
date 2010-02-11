@@ -1,6 +1,7 @@
 import unittest
 
 from rdf.namespace import TEST
+from rdf.graph import Graph
 from rdf.testcases.test import Test
 from util import TESTS
 
@@ -50,13 +51,13 @@ class ParserTestCase(RDFTestCase):
 class PositiveParserTestCase(RDFTestCase):
     def setUp(self):
         super().setUp()
-        self.input_triples = set()
+        self.input_graph = Graph()
         for document in self.test.input_documents:
-            self.input_triples.update(document.read(self.opener))
-        self.output_triples = set(self.test.output_document.read(self.opener))
+            self.input_graph.update(document.read(self.opener))
+        self.output_graph = Graph(self.test.output_document.read(self.opener))
 
     def runTest(self):
-        self.assertSetEqual(self.input_triples, self.output_triples)
+        self.assertEqual(self.input_graph, self.output_graph)
 
 class NegativeParserTestCase(ParserTestCase):
     def setUp(self):
