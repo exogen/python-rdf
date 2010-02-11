@@ -16,7 +16,7 @@ class TestEmptyGraph(unittest.TestCase):
     def test_repr_shows_constructor(self):
         self.assertEqual(repr(self.graph), "Graph()")
 
-class TestOneTripleGraph(unittest.TestCase):
+class TestSimpleGraph(unittest.TestCase):
     def setUp(self):
         self.triple = (URI('http://www.example.org/index.html'),
                        URI('http://purl.org/dc/elements/1.1/creator'),
@@ -62,5 +62,14 @@ class TestUngroundGraph(unittest.TestCase):
         self.graph = Graph(self.triples)
 
     def test_is_ground_with_blank_nodes_is_false(self):
-        self.assert_(not self.graph.is_ground())
+        self.assertEqual(self.graph.is_ground(), False)
+
+    def test_is_equal_to_graph_with_valid_bijection(self):
+        triples = [(URI('http://www.example.org/index.html'),
+                    URI('http://purl.org/dc/elements/1.1/creator'),
+                    BlankNode('person')),
+                   (BlankNode('person'),
+                    URI('http://xmlns.com/foaf/0.1/name'),
+                    Literal("John Smith"))]
+        self.assertEqual(self.graph, Graph(triples))
 

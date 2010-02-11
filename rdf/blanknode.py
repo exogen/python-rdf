@@ -11,8 +11,12 @@ class BlankNode:
             return "BlankNode()"
 
     def __eq__(self, other):
-        return isinstance(other, BlankNode) and other.node_id == self.node_id
+        return (isinstance(other, BlankNode) and
+                (self is other or
+                 (self.node_id is not None and
+                  self.node_id == other.node_id)))
 
     def __hash__(self):
-        return hash(BlankNode) ^ hash(self.node_id)
+        identity = self.node_id if self.node_id is not None else id(self)
+        return hash(BlankNode) ^ hash(identity)
 
