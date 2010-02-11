@@ -37,7 +37,7 @@ class Document:
             raise URLError(self.uri)
 
     def read(self, opener=urlopen):
-        return self.get_reader().read(self.open(opener))
+        return self.get_reader().read(self.open(opener), self.uri)
 
     def get_reader(self):
         if self.type == TEST['NT-Document']:
