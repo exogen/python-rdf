@@ -2,9 +2,8 @@ import unittest
 
 from rdf.namespace import TEST
 from rdf.testcases.test import Test
+from util import TESTS
 
-
-__unittest = 1
 
 class RDFTestCase(unittest.TestCase):
     TYPE_MAP = {}
@@ -30,8 +29,20 @@ class RDFTestCase(unittest.TestCase):
 
     def id(self):
         if self.test is not None:
-            return self.test.uri
+            return str(self.test.uri)
         return super().id()
+
+    def shortDescription(self):
+        if self.test is not None:
+            if self.test.description:
+                description_lines = self.test.description.strip().splitlines()
+                first_line = description_lines[0].rstrip()
+                if first_line:
+                    return "{0!s}\n{1}".format(self.test.uri, first_line)
+            else:
+                return str(self.test.uri)
+        else:
+            return super().shortDescription()
 
 class ParserTestCase(RDFTestCase):
     pass

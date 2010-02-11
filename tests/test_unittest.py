@@ -39,9 +39,9 @@ class TestWithdrawnTestCase(TestRDFTestCase):
                          [(self.test_case, "test status is WITHDRAWN")])
         self.assertEqual(self.result.testsRun, 1)
 
-    def test_short_description_uses_default_implementation(self):
+    def test_short_description_is_uri(self):
         self.assertEqual(self.test_case.shortDescription(),
-                         unittest.TestCase.shortDescription(self.test_case))
+                         "http://example.org/test")
 
 class TestObsoleteTestCase(TestRDFTestCase):
     test = Test(TEST.PositiveParserTest, EX.test)

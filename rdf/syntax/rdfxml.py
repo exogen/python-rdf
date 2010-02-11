@@ -1,3 +1,4 @@
+import urllib.parse
 from xml.etree import ElementTree
 from xml.etree.ElementTree import QName
 
@@ -30,8 +31,28 @@ class RDFXMLReader:
     def _node_element(self, element):
         if URI(QName(element.tag)) in self.ILLEGAL_NODES:
             raise self.ParseError("Illegal node tag: {!r}".format(element.tag))
-        yield None
 
+        subject = self._subject(element)
+        # 2.2 Node Elements and Property Elements
+        for triple in self._property_elements(element, subject):
+            yield triple
 
-            
+    def _subject(self, element):
+        about = element.get(QName(RDF, 'about'))
+        if about is not None:
+            return self._uri(about)
+
+    def _uri(self, uri, base=None):
+        return URI(urllib.parse.urljoin(base or '', uri))
+
+    def _property_elements(self, element, subject):
+        for child in element:
+            predicate = URI(QName(child.tag))
+            if predicate in self.ILLEGAL_PROPERTIES:
+                raise ParseError("Illegal property tag: {!r}".format(predicate))
+
+            predicate = URI(QName(child.tag))
+
+        # TODO: Finish this.
+        return []
 
