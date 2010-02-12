@@ -5,6 +5,7 @@ import rdf.testcases.document
 from rdf.namespace import Namespace, TEST
 from rdf.syntax.ntriples import NTriplesReader
 from rdf.syntax.rdfxml import RDFXMLReader
+from rdf.graph import Graph
 from rdf.testcases.document import Document
 from rdf.testcases.opener import URItoFileOpener
 from util import get_data_path, open_data_file, TESTS, TEST_OPENER
@@ -68,8 +69,8 @@ class TestNTriplesDocument(TestDocument):
 class TestRDFXMLDocument(TestDocument):
     def setUp(self):
         self.doc = Document(TEST['RDF-XML-Document'],
-                            TESTS['rdf-charmod-literals/test001.rdf'])
-        self.file = open_data_file('rdf-testcases/rdf-charmod-literals/test001.rdf')
+                            TESTS['datatypes/test001.rdf'])
+        self.file = open_data_file('rdf-testcases/datatypes/test001.rdf')
         self.reader = RDFXMLReader()
         super().setUp()
 
@@ -78,7 +79,7 @@ class TestRDFXMLDocument(TestDocument):
 
     def test_has_uri(self):
         self.assertEqual(self.doc.uri,
-                         TESTS['rdf-charmod-literals/test001.rdf'])
+                         TESTS['datatypes/test001.rdf'])
 
     def test_open_with_unmatched_uri_raises_exception(self):
         opener = URItoFileOpener({})
@@ -88,6 +89,6 @@ class TestRDFXMLDocument(TestDocument):
         self.assertEqual(self.doc.open(TEST_OPENER).read(), self.file.read())
 
     def test_read_yields_triples_from_file(self):
-        self.assertSameElements(self.doc.read(TEST_OPENER),
-                                self.reader.read(self.file))
+        self.assertEqual(set(self.doc.read(TEST_OPENER)),
+                         set(self.reader.read(self.file)))
 

@@ -62,10 +62,10 @@ class TestObsoleteTestCase(TestRDFTestCase):
 class TestPositiveParserTestCase(TestRDFTestCase):
     test = Test(TEST.PositiveParserTest, EX.test)
     test.status = 'APPROVED'
-    test.input_documents = {Document(TEST['RDF-XML-Document'],
-                                     TESTS['Manifest.rdf'])}
-    test.output_document = Document(TEST['RDF-XML-Document'],
-                                    TESTS['Manifest.rdf'])
+    test.input_documents = {Document(TEST['NT-Document'],
+                                     TESTS['datatypes/test001.nt'])}
+    test.output_document = Document(TEST['NT-Document'],
+                                    TESTS['datatypes/test001.nt'])
 
     def test_runs_without_errors(self):
         self.assertEqual(self.result.errors, [])
@@ -75,8 +75,8 @@ class TestPositiveParserTestCase(TestRDFTestCase):
 class TestNegativeParserTestCase(TestRDFTestCase):
     test = Test(TEST.NegativeParserTest, EX.test)
     test.status = 'APPROVED'
-    test.input_document = Document(TEST['RDF-XML-Document'],
-                                   TESTS['Manifest.rdf'])
+    test.input_document = Document(TEST['NT-Document'],
+                                   TESTS['datatypes/test001.nt'])
     
     def test_runs_without_errors(self):
         self.assertEqual(self.result.errors, [])

@@ -3,6 +3,7 @@ import unittest
 from rdf.namespace import TEST
 from rdf.graph import Graph
 from rdf.testcases.test import Test
+from rdf.syntax.exceptions import ParseError
 from util import TESTS
 
 
@@ -66,7 +67,7 @@ class NegativeParserTestCase(ParserTestCase):
         self.reader = self.test.input_document.get_reader()
 
     def runTest(self):
-        self.assertRaises(self.reader.ParseError, self.reader.read, self.file,
+        self.assertRaises(ParseError, self.reader.read, self.file,
                           self.test.input_document.uri)
 
 class EntailmentTestCase(RDFTestCase):

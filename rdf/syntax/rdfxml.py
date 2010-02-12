@@ -6,6 +6,7 @@ from rdf.uri import URI
 from rdf.blanknode import BlankNode
 from rdf.literal import PlainLiteral, TypedLiteral
 from rdf.namespace import Namespace, RDF, XML
+from rdf.syntax.exceptions import ParseError
 
 
 class RDFXMLReader:
@@ -18,9 +19,6 @@ class RDFXMLReader:
     ILLEGAL_PROPERTY_TAGS = CORE_SYNTAX_TERMS | {RDF.Description} | OLD_TERMS
     ILLEGAL_PROPERTY_ATTRS = SYNTAX_TERMS | OLD_TERMS
     
-    class ParseError(Exception):
-        pass
-
     def read(self, lines, base_uri=None):
         if isinstance(lines, str):
             root = ElementTree.XML(lines)
@@ -29,8 +27,10 @@ class RDFXMLReader:
         self._init_element(root)
         if root.base_uri is None:
             root.base_uri = base_uri
-        for element in root:
-            self._init_element(element, parent=root)
+        # rdf:RDF is not necessarily the root element.
+        for element in root if root.uri == RDF.RDF else [root]:
+            if element is not root:
+                self._init_element(element, parent=root)
             for triple in self._node_element(element):
                 yield triple
 
@@ -47,7 +47,7 @@ class RDFXMLReader:
     def _node_element(self, element):
         # 7.2.11 Production nodeElement
         if element.uri in self.ILLEGAL_NODE_TAGS:
-            raise self.ParseError("Illegal node tag: {!s}".format(element.uri))
+            raise ParseError("Illegal node tag: {!s}".format(element.uri))
 
         element.subject = self._subject(element)
 
@@ -56,14 +56,14 @@ class RDFXMLReader:
             yield (element.subject, RDF.type, element.uri)
 
         # 2.5 Property Attributes
-        type_attr = element.get(QName(RDF, 'type'))
+        type_attr = element.attrib.pop(QName(RDF, 'type'), None)
         if type_attr is not None:
             yield (element.subject, RDF.type, URI(type_attr))
 
         for attr, value in element.items():
-            attr = URI(QName(attr))
-            if attr not in self.ILLEGAL_PROPERTY_ATTRS and attr != RDF.type:
-                yield (element.subject, attr, PlainLiteral(value))
+            predicate = URI(QName(attr))
+            if predicate not in self.ILLEGAL_PROPERTY_ATTRS:
+                yield (element.subject, predicate, PlainLiteral(value, element.language))
 
         for triple in self._property_elements(element):
             yield triple
@@ -76,12 +76,12 @@ class RDFXMLReader:
             if node_id is None:
                 if about is None:
                     return self._uri('#' + id_, element.base_uri)
-                raise self.ParseError
-            raise self.ParseError
+                raise ParseError
+            raise ParseError
         elif node_id is not None:
             if about is None:
                 return BlankNode(node_id)
-            raise self.ParseError
+            raise ParseError
         elif about is not None:
             return self._uri(about, element.base_uri)
         return BlankNode()
@@ -93,35 +93,128 @@ class RDFXMLReader:
 
     def _property_elements(self, element):
         # 7.2.13 Production propertyEltList
-        for child in element:
+        for property_element in element:
             # 7.2.14 Production propertyElt
-            self._init_element(child, parent=element)
+            self._init_element(property_element, parent=element)
             # Container Membership Property Elements: rdf:li and rdf:_n
-            if child.uri == RDF.li:
-                child.uri = RDF['_' + str(element.li_counter)]
+            if property_element.uri == RDF.li:
+                property_element.uri = RDF['_' + str(element.li_counter)]
                 element.li_counter += 1
 
-            if len(child) == 1:
-                # 7.2.15 Production resourcePropertyElt
-                node_element = child[0]
-                self._init_element(node_element, parent=child)
+            id_ = property_element.attrib.pop(QName(RDF, 'ID'), None)
+            parse_type = property_element.attrib.pop(QName(RDF, 'parseType'), None)
+            if parse_type == "Resource":
+                # 7.2.18 Production parseTypeResourcePropertyElt
+                node_element = ElementTree.Element(str(QName(RDF, 'Description')))
+                node_element[:] = property_element
+                self._init_element(node_element, parent=property_element)
                 for triple in self._node_element(node_element):
                     yield triple
-                yield (element.subject, child.uri, node_element.subject)
-            elif len(child) == 0:
-                if child.text:
-                    # 7.2.16 Production literalPropertyElt
-                    datatype = child.get(QName(RDF, 'datatype'))
-                    if datatype is not None:
-                        literal = TypedLiteral(child.text, datatype)
+                triple = (element.subject, property_element.uri, node_element.subject)
+                yield triple
+                if id_ is not None:
+                    # 7.3 Reification Rules
+                    statement_uri = self._uri('#' + id_, property_element.base_uri)
+                    for triple in self._reify(statement_uri, triple):
+                        yield triple
+            elif parse_type == "Collection":
+                # 7.2.19 Production parseTypeCollectionPropertyElt
+                node_ids = []
+                for node_element in property_element:
+                    self._init_element(node_element, parent=property_element)
+                    for triple in self._node_element(node_element):
+                        yield triple
+                    node_ids.append((node_element, BlankNode()))
+                for node_element, object_ in node_ids:
+                    break
+                else:
+                    object_ = RDF.nil
+                triple = (element.subject, property_element.uri, object_)
+                yield triple
+                if id_ is not None:
+                    # 7.3 Reification Rules
+                    statement_uri = self._uri('#' + id_, property_element.base_uri)
+                    for triple in self._reify(statement_uri, triple):
+                        yield triple
+                for i, (node_element, object_) in enumerate(node_ids):
+                    yield (object_, RDF.first, node_element.subject)
+                    try:
+                        next_pair = node_ids[i + 1]
+                    except IndexError:
+                        next_object = RDF.nil
                     else:
-                        literal = PlainLiteral(child.text, child.language)
+                        next_element, next_object = next_pair
+                    yield (object_, RDF.rest, next_object)
+            elif parse_type == "Literal" or parse_type is not None:
+                pass
+            elif len(property_element) == 1:
+                # 7.2.15 Production resourcePropertyElt
+                node_element = property_element[0]
+                self._init_element(node_element, parent=property_element)
+                for triple in self._node_element(node_element):
+                    yield triple
+                triple = (element.subject, property_element.uri, node_element.subject)
+                yield triple
+                if id_ is not None:
+                    # 7.3 Reification Rules
+                    statement_uri = self._uri('#' + id_, property_element.base_uri)
+                    for triple in self._reify(statement_uri, triple):
+                        yield triple
+            elif len(property_element) == 0:
+                if property_element.text:
+                    # 7.2.16 Production literalPropertyElt
+                    datatype = property_element.get(QName(RDF, 'datatype'))
+                    if datatype is not None:
+                        object_ = TypedLiteral(property_element.text, datatype)
+                    else:
+                        object_ = PlainLiteral(property_element.text, property_element.language)
+                    triple = (element.subject, property_element.uri, object_)
+                    yield triple
+                    if id_ is not None:
+                        # 7.3 Reification Rules
+                        statement_uri = self._uri('#' + id_, property_element.base_uri)
+                        for triple in self._reify(statement_uri, triple):
+                            yield triple
                 else:
                     # 7.2.21 Production emptyPropertyElt
-                    resource = child.get(QName(RDF, 'resource'))
-                    if resource is not None:
-                        object_ = self._uri(resource, child.base_uri)
-                        yield (element.subject, child.uri, object_)
+                    if not property_element.attrib:
+                        object_ = PlainLiteral("", property_element.language)
+                        triple = (element.subject, property_element.uri, object_)
+                        yield triple
+                        if id_ is not None:
+                            statement_uri = self._uri('#' + id_, property_element.base_uri)
+                            for triple in self._reify(statement_uri, triple):
+                                yield triple
+                    else:
+                        resource = property_element.attrib.pop(QName(RDF, 'resource'), None)
+                        node_id = property_element.attrib.pop(QName(RDF, 'nodeID'), None)
+                        if resource is not None:
+                            if node_id is None:
+                                object_ = self._uri(resource, property_element.base_uri)
+                            else:
+                                raise ParseError
+                        elif node_id is not None:
+                            object_ = BlankNode(node_id)
+                        else:
+                            object_ = BlankNode()
+                        triple = (element.subject, property_element.uri, object_)
+                        yield triple
+                        if id_ is not None:
+                            statement_uri = self._uri('#' + id_, property_element.base_uri)
+                            for triple in self._reify(statement_uri, triple):
+                                yield triple
+                        subject = object_
+                        for attr, value in property_element.items():
+                            predicate = URI(QName(attr))
+                            if predicate != RDF.type:
+                                object_ = PlainLiteral(value, property_element.language)
+                            else:
+                                object_ = self._uri(value, property_element.base_uri)
+                            yield (subject, predicate, object_)
 
-
+    def _reify(self, uri, triple):
+        yield (uri, RDF.type, RDF.Statement)
+        yield (uri, RDF.subject, triple[0])
+        yield (uri, RDF.predicate, triple[1])
+        yield (uri, RDF.object, triple[2])
 

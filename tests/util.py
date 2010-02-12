@@ -13,7 +13,7 @@ def open_data_file(filename, mode='r'):
 
 class NullOpener(OpenerDirector):
     def open(self, *args, **kwargs):
-        return None
+        raise IOError
 
 EX = Namespace('http://example.org/')
 TESTS = Namespace('http://www.w3.org/2000/10/rdf-tests/rdfcore/')

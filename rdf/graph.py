@@ -6,38 +6,45 @@ from rdf.blanknode import BlankNode
 
 class Graph(set):
     def is_ground(self):
-        for triple in self._blank_node_triples():
+        for triple in self._blank_node_triples(self):
             return False
         return True
-
+    
     def __eq__(self, other):
-        if not isinstance(other, Graph):
-            return False
         if len(self) != len(other):
             return False
-        bnode_triples = set(self._blank_node_triples())
+        bnode_triples = set(self._blank_node_triples(self))
         ground_triples = self - bnode_triples
-        other_bnode_triples = set(other._blank_node_triples())
+        other_bnode_triples = set(self._blank_node_triples(other))
         other_ground_triples = other - other_bnode_triples
         if ground_triples != other_ground_triples:
             return False
-        if bnode_triples and other_bnode_triples:
+        if bnode_triples or other_bnode_triples:
             if len(bnode_triples) != len(other_bnode_triples):
                 return False
-            bnodes = self._blank_node_map(bnode_triples)
-            other_bnodes = self._blank_node_map(other_bnode_triples)
-            if len(bnodes) != len(other_bnodes):
+            bnode_dict = self._blank_node_triple_dict(bnode_triples)
+            other_bnode_dict = self._blank_node_triple_dict(other_bnode_triples)
+            if len(bnode_dict) != len(other_bnode_dict):
                 return False
-            return False
+            for bijection in self._blank_node_bijection_candidates(bnode_dict, other_bnode_dict):
+                for triple in self._apply_bijection(bijection, bnode_triples):
+                    if triple not in other_bnode_triples:
+                        break
+                else:
+                    return True
+            else:
+                return False
         else:
             return True
 
-    def _blank_node_triples(self):
-        for triple in self:
-            if any(isinstance(term, BlankNode) for term in triple):
+    @classmethod
+    def _blank_node_triples(cls, triples):
+        for triple in triples:
+            if isinstance(triple[0], BlankNode) or isinstance(triple[2], BlankNode):
                 yield triple
 
-    def _blank_node_map(self, triples):
+    @classmethod
+    def _blank_node_triple_dict(cls, triples):
         map = defaultdict(set)
         for triple in triples:
             for term in triple:
@@ -45,18 +52,33 @@ class Graph(set):
                     map[term].add(triple)
         return map
 
-    def _blank_node_bijections(self, a, b):
+    @classmethod
+    def _blank_node_bijection_candidates(cls, a_bnode_dict, b_bnode_dict):
         candidates = defaultdict(set)
-        for a_bnode, a_triples in a.items():
-            for b_bnode, b_triples in b.items():
+        for a_bnode, a_triples in a_bnode_dict.items():
+            for b_bnode, b_triples in b_bnode_dict.items():
                 # Filter the set of possible candidates.
                 if len(a_triples) == len(b_triples):
                     candidates[a_bnode].add(b_bnode)
 
-        done = False
-        while not done:
-            for a_node, b_bnodes in candidates.items():
-                for b_bnode in b_bnodes:
-                    bijection = {a_bnode: b_bnode}
-                    inverse = {b_bnode: a_bnode}
+        product_pairs = [[(a_bnode, b_bnode) for b_bnode in b_bnodes]
+                         for a_bnode, b_bnodes in candidates.items()]
+        for bijection in product(*product_pairs):
+            mapped = set()
+            for a_bnode, b_bnode in bijection:
+                if b_bnode not in mapped:
+                    mapped.add(b_bnode)
+                else:
+                    break
+            else:
+                yield dict(bijection)
+
+    @classmethod
+    def _apply_bijection(cls, bijection, triples):
+        for subject, predicate, object_ in triples:
+            if isinstance(subject, BlankNode):
+                subject = bijection[subject]
+            if isinstance(object_, BlankNode):
+                object_ = bijection[object_]
+            yield (subject, predicate, object_)
 

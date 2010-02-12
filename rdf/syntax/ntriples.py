@@ -5,13 +5,8 @@ from urllib.parse import urljoin
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.literal import PlainLiteral, TypedLiteral
+from rdf.syntax.exceptions import ParseError, InvalidEscapeSequence
 
-
-class ParseError(Exception):
-    pass
-
-class InvalidEscapeSequence(ParseError):
-    pass
 
 class NTriplesReader:
     # Grammar adapted from: http://www.w3.org/TR/rdf-testcases/#ntrip_grammar

@@ -25,8 +25,9 @@ class TestBlankNode(unittest.TestCase):
     def test_repr_shows_constructor(self):
         self.assertEqual(repr(self.b1), "BlankNode('b1')")
 
-    def test_repr_without_node_id_omits_argument(self):
-        self.assertEqual(repr(self.b2), "BlankNode()")
+    def test_repr_without_node_id_shows_id(self):
+        hex_id = hex(id(self.b2))
+        self.assertEqual(repr(self.b2), "<BlankNode at {}>".format(hex_id))
 
     def test_equal_to_blank_node_with_same_node_id(self):
         self.assertEqual(self.b1, BlankNode('b1'))
