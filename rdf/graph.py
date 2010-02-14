@@ -31,7 +31,6 @@ class Graph(set):
                     if triple not in other_bnode_triples:
                         break
                 else:
-                    print(i + 1)
                     return True
             else:
                 return False
