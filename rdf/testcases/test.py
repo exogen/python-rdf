@@ -1,7 +1,6 @@
 import unittest
 from xml.etree.ElementTree import QName
 
-from rdf.resource import Resource
 from rdf.uri import URI
 from rdf.namespace import RDF, TEST
 from rdf.testcases.document import Document

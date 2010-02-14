@@ -2,7 +2,6 @@ import unittest
 import re
 from xml.etree import cElementTree as ElementTree
 
-from rdf.resource import Resource
 from rdf.uri import URI
 from rdf.namespace import Namespace, TEST, RDF, RDFS, XSD
 from rdf.testcases.document import Document

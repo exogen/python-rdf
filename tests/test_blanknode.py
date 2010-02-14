@@ -1,6 +1,5 @@
 import unittest
 
-from rdf.resource import Resource
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.literal import Literal
@@ -11,9 +10,6 @@ class TestBlankNode(unittest.TestCase):
     def setUp(self):
         self.bnode = BlankNode()
 
-    def test_is_resource(self):
-        self.assert_(isinstance(self.bnode, Resource))
-    
     def test_is_blank_node(self):
         self.assert_(isinstance(self.bnode, BlankNode))
 
@@ -35,9 +31,6 @@ class TestBlankNode(unittest.TestCase):
 
     def test_hash_equal_to_hash_of_same_instance(self):
         self.assertEqual(hash(self.bnode), hash(self.bnode))
-
-    def test_resource_without_uri_is_blank_node(self):
-        self.assert_(isinstance(Resource(), BlankNode))
 
     def test_compares_greater_than_none(self):
         self.assert_(self.bnode > None)
