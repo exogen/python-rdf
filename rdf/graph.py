@@ -2,14 +2,11 @@ from collections import defaultdict
 from itertools import product
 
 from rdf.blanknode import BlankNode
+from rdf.uri import URI
+from rdf.literal import Literal, TypedLiteral
 
 
 class Graph(set):
-    def is_ground(self):
-        for triple in self._blank_node_triples(self):
-            return False
-        return True
-    
     def __eq__(self, other):
         if not isinstance(other, Graph) or len(self) != len(other):
             return False
@@ -38,6 +35,43 @@ class Graph(set):
 
     def __ne__(self, other):
         return not self == other
+
+    def is_ground(self):
+        for triple in self._blank_node_triples(self):
+            return False
+        return True
+    
+    def nodes(self):
+        return set(self._nodes())
+
+    def _nodes(self):
+        for triple in self:
+            yield triple[0]
+            yield triple[2]
+
+    def names(self):
+        return set(self._names())
+    
+    def _names(self):
+        for triple in self:
+            for term in triple[0], triple[2]:
+                if isinstance(term, (URI, Literal)):
+                    yield term
+                if isinstance(term, TypedLiteral):
+                    yield term.datatype
+            yield triple[1]
+
+    def vocabulary(self, include_datatypes=False):
+        return set(self._vocabulary(include_datatypes))
+
+    def _vocabulary(self, include_datatypes=False):
+        for triple in self:
+            for term in triple[0], triple[2]:
+                if isinstance(term, (URI, Literal)):
+                    yield term
+                if isinstance(term, TypedLiteral) and include_datatypes:
+                    yield term.datatype
+            yield triple[1]
 
     @classmethod
     def _blank_node_triples(cls, triples):
