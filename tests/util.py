@@ -18,7 +18,7 @@ class NullOpener(OpenerDirector):
 EX = Namespace('http://example.org/')
 TESTS = Namespace('http://www.w3.org/2000/10/rdf-tests/rdfcore/')
 
-PATH_MAP = {TESTS: get_data_path('rdf-testcases')}
+PATH_MAP = {TESTS: get_data_path('rdfcore')}
 TEST_OPENER = URItoFileOpener(PATH_MAP)
 NULL_OPENER = NullOpener()
 

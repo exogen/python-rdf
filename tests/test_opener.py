@@ -9,7 +9,7 @@ from util import open_data_file, EX, TESTS, PATH_MAP, TEST_OPENER
 class TestHandler(unittest.TestCase):
     def setUp(self):
         self.handler = URItoFileHandler(PATH_MAP)
-        self.manifest_file = open_data_file('rdf-testcases/Manifest.rdf')
+        self.manifest_file = open_data_file('rdfcore/Manifest.rdf')
 
     def tearDown(self):
         self.manifest_file.close()
@@ -27,7 +27,7 @@ class TestHandler(unittest.TestCase):
 class TestOpener(unittest.TestCase):
     def setUp(self):
         self.opener = URItoFileOpener(PATH_MAP)
-        self.manifest_file = open_data_file('rdf-testcases/Manifest.rdf')
+        self.manifest_file = open_data_file('rdfcore/Manifest.rdf')
 
     def test_is_opener_director(self):
         self.assert_(isinstance(self.opener, OpenerDirector))

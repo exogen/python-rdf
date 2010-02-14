@@ -58,10 +58,6 @@ class RDFXMLReader:
         self.parser = parser
     
     def read(self, lines, base_uri=None):
-        if isinstance(lines, str):
-            lines = StringIO(lines)
-        elif isinstance(lines, bytes):
-            lines = BytesIO(lines)
         root = etree.parse(lines, self.parser, base_url=base_uri).getroot()
         ids = set()
         # rdf:RDF is not necessarily the root element.
@@ -117,8 +113,7 @@ class RDFXMLReader:
             if about is None:
                 if _NCNAME.match(node_id):
                     return BlankNode(node_id)
-                else:
-                    raise ParseError
+                raise ParseError
             raise ParseError
         elif about is not None:
             return self._uri(about, element.base_uri)

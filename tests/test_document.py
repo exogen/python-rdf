@@ -44,7 +44,7 @@ class TestNTriplesDocument(TestDocument):
     def setUp(self):
         self.doc = Document(TEST['NT-Document'],
                             TESTS['datatypes-intensional/test002.nt'])
-        self.file = open_data_file('rdf-testcases/datatypes-intensional/test002.nt')
+        self.file = open_data_file('rdfcore/datatypes-intensional/test002.nt')
         self.reader = NTriplesReader()
         super().setUp()
 
@@ -70,7 +70,7 @@ class TestRDFXMLDocument(TestDocument):
     def setUp(self):
         self.doc = Document(TEST['RDF-XML-Document'],
                             TESTS['datatypes/test001.rdf'])
-        self.file = open_data_file('rdf-testcases/datatypes/test001.rdf')
+        self.file = open_data_file('rdfcore/datatypes/test001.rdf')
         self.reader = RDFXMLReader()
         super().setUp()
 
