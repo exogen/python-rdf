@@ -6,6 +6,10 @@ from rdf.namespace import RDF, TEST
 from rdf.testcases.document import Document
 
 
+__all__ = ['Test', 'PositiveParserTest', 'NegativeParserTest',
+           'PositiveEntailmentTest', 'NegativeEntailmentTest',
+           'MiscellaneousTest']
+
 class Test:
     TYPE_MAP = {}
 

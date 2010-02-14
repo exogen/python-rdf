@@ -5,8 +5,8 @@ from xml.etree import cElementTree as ElementTree
 from rdf.uri import URI
 from rdf.namespace import Namespace, TEST, RDF, RDFS, XSD
 from rdf.testcases.document import Document
-from rdf.testcases.test import Test, PositiveParserTest, NegativeParserTest, \
-                               PositiveEntailmentTest, NegativeEntailmentTest
+from rdf.testcases.test import *
+
 from util import open_data_file, EX, TESTS
 
 

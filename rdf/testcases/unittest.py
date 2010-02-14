@@ -87,8 +87,8 @@ class MiscellaneousTestCase(RDFTestCase):
 RDFTestCase.TYPE_MAP.update({
     TEST.PositiveParserTest: PositiveParserTestCase,
     TEST.NegativeParserTest: NegativeParserTestCase,
-    TEST.PositiveEntailment: PositiveEntailmentTestCase,
-    TEST.NegativeEntailment: NegativeEntailmentTestCase,
+    TEST.PositiveEntailmentTest: PositiveEntailmentTestCase,
+    TEST.NegativeEntailmentTest: NegativeEntailmentTestCase,
     TEST.MiscellaneousTest: MiscellaneousTestCase})
 
 class RDFTestSuite(unittest.TestSuite):
