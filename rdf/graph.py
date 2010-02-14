@@ -22,11 +22,13 @@ class Graph(set):
             other_bnode_dict = self._blank_node_triple_dict(other_bnode_triples)
             if len(bnode_dict) != len(other_bnode_dict):
                 return False
-            signature = self._blank_node_triple_signature(bnode_dict)
-            other_signature = self._blank_node_triple_signature(other_bnode_dict)
-            if signature != other_signature:
-                return True
-            for i, bijection in enumerate(self._blank_node_bijection_candidates(bnode_dict, other_bnode_dict)):
+            signatures = self._blank_node_signatures(bnode_dict)
+            other_signatures = self._blank_node_signatures(other_bnode_dict)
+            metasignature = self._metasignature(signatures)
+            other_metasignature = self._metasignature(other_signatures)
+            if metasignature != other_metasignature:
+                return False
+            for i, bijection in enumerate(self._blank_node_bijection_candidates(signatures, other_signatures)):
                 for triple in self._apply_bijection(bijection, bnode_triples):
                     if triple not in other_bnode_triples:
                         break
@@ -93,12 +95,11 @@ class Graph(set):
         return map
 
     @classmethod
-    def _blank_node_triple_signature(cls, bnode_dict):
-        signature = defaultdict(int)
+    def _blank_node_signatures(cls, bnode_dict):
+        signatures = {}
         for bnode, triples in bnode_dict.items():
-            for triple in cls._blank_node_signature(triples):
-                signature[triple] += 1
-        return signature
+            signatures[bnode] = set(cls._blank_node_signature(triples))
+        return signatures
 
     @classmethod
     def _blank_node_signature(cls, triples):
@@ -109,13 +110,18 @@ class Graph(set):
             yield triple
 
     @classmethod
-    def _blank_node_bijection_candidates(cls, a_bnode_dict, b_bnode_dict):
+    def _metasignature(cls, signatures):
+        metasignature = defaultdict(int)
+        for triples in signatures.values():
+            for triple in triples:
+                metasignature[triple] += 1
+        return metasignature
+
+    @classmethod
+    def _blank_node_bijection_candidates(cls, a_signatures, b_signatures):
         candidates = defaultdict(set)
-        for bnode_dict in a_bnode_dict, b_bnode_dict:
-            for bnode, triples in bnode_dict.items():
-                bnode_dict[bnode] = set(cls._blank_node_signature(triples))
-        for a_bnode, a_signature in a_bnode_dict.items():
-            for b_bnode, b_signature in b_bnode_dict.items():
+        for a_bnode, a_signature in a_signatures.items():
+            for b_bnode, b_signature in b_signatures.items():
                 # Filter the set of possible candidates.
                 if a_signature == b_signature:
                     candidates[a_bnode].add(b_bnode)
