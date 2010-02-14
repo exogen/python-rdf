@@ -22,11 +22,16 @@ class Graph(set):
             other_bnode_dict = self._blank_node_triple_dict(other_bnode_triples)
             if len(bnode_dict) != len(other_bnode_dict):
                 return False
-            for bijection in self._blank_node_bijection_candidates(bnode_dict, other_bnode_dict):
+            signature = self._blank_node_triple_signature(bnode_dict)
+            other_signature = self._blank_node_triple_signature(other_bnode_dict)
+            if signature != other_signature:
+                return True
+            for i, bijection in enumerate(self._blank_node_bijection_candidates(bnode_dict, other_bnode_dict)):
                 for triple in self._apply_bijection(bijection, bnode_triples):
                     if triple not in other_bnode_triples:
                         break
                 else:
+                    print(i + 1)
                     return True
             else:
                 return False
@@ -89,12 +94,31 @@ class Graph(set):
         return map
 
     @classmethod
+    def _blank_node_triple_signature(cls, bnode_dict):
+        signature = defaultdict(int)
+        for bnode, triples in bnode_dict.items():
+            for triple in cls._blank_node_signature(triples):
+                signature[triple] += 1
+        return signature
+
+    @classmethod
+    def _blank_node_signature(cls, triples):
+        count = len(triples)
+        for triple in triples:
+            triple = tuple(count if isinstance(term, BlankNode) else term
+                           for term in triple)
+            yield triple
+
+    @classmethod
     def _blank_node_bijection_candidates(cls, a_bnode_dict, b_bnode_dict):
         candidates = defaultdict(set)
-        for a_bnode, a_triples in a_bnode_dict.items():
-            for b_bnode, b_triples in b_bnode_dict.items():
+        for bnode_dict in a_bnode_dict, b_bnode_dict:
+            for bnode, triples in bnode_dict.items():
+                bnode_dict[bnode] = set(cls._blank_node_signature(triples))
+        for a_bnode, a_signature in a_bnode_dict.items():
+            for b_bnode, b_signature in b_bnode_dict.items():
                 # Filter the set of possible candidates.
-                if len(a_triples) == len(b_triples):
+                if a_signature == b_signature:
                     candidates[a_bnode].add(b_bnode)
 
         product_pairs = [[(a_bnode, b_bnode) for b_bnode in b_bnodes]
