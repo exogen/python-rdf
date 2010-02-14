@@ -28,6 +28,27 @@ class TestRDFTestCase(unittest.TestCase):
     def test_id_is_test_uri(self):
         self.assertEqual(self.test_case.id(), str(self.test.uri))
 
+class TestUnboundTestCase(unittest.TestCase):
+    def setUp(self):
+        self.test_case = RDFTestCase()
+        self.test_case.opener = TEST_OPENER
+        self.result = self.test_case.defaultTestResult()
+        self.test_case.run(self.result)
+
+    def test_is_test_case(self):
+        self.assert_(isinstance(self.test_case, RDFTestCase))
+
+    def test_is_unittest_test_case(self):
+        self.assert_(isinstance(self.test_case, unittest.TestCase))
+
+    def test_id_uses_default_implementation(self):
+        self.assertEqual(self.test_case.id(),
+                         unittest.TestCase.id(self.test_case))
+
+    def test_short_description_uses_default_implementation(self):
+        self.assertEqual(self.test_case.shortDescription(),
+                         unittest.TestCase.shortDescription(self.test_case))
+
 class TestWithdrawnTestCase(TestRDFTestCase):
     test = Test(TEST.PositiveParserTest, EX.test)
     test.status = 'WITHDRAWN'
@@ -58,6 +79,10 @@ class TestObsoleteTestCase(TestRDFTestCase):
     def test_docstring_is_test_description(self):
         self.assertEqual(self.test_case.runTest.__doc__,
                          "Obsolete test case!")
+
+    def test_short_description_is_test_uri_and_description(self):
+        self.assertEqual(self.test_case.shortDescription(),
+            "http://example.org/test\nObsolete test case!")
 
 class TestPositiveParserTestCase(TestRDFTestCase):
     test = Test(TEST.PositiveParserTest, EX.test)

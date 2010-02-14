@@ -67,8 +67,10 @@ class NegativeParserTestCase(ParserTestCase):
         self.reader = self.test.input_document.get_reader()
 
     def runTest(self):
-        self.assertRaises(ParseError, self.reader.read, self.file,
-                          self.test.input_document.uri)
+        base_uri = self.test.input_document.uri
+        with self.assertRaises(ParseError):
+            for triple in self.reader.read(self.file, base_uri):
+                pass
 
 class EntailmentTestCase(RDFTestCase):
     pass

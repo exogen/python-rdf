@@ -11,17 +11,16 @@ class Graph(set):
         return True
     
     def __eq__(self, other):
-        if len(self) != len(other):
+        if not isinstance(other, Graph) or len(self) != len(other):
             return False
         bnode_triples = set(self._blank_node_triples(self))
         ground_triples = self - bnode_triples
         other_bnode_triples = set(self._blank_node_triples(other))
         other_ground_triples = other - other_bnode_triples
-        if ground_triples != other_ground_triples:
+        if (len(ground_triples) != len(other_ground_triples) or
+            ground_triples != other_ground_triples):
             return False
-        if bnode_triples or other_bnode_triples:
-            if len(bnode_triples) != len(other_bnode_triples):
-                return False
+        elif bnode_triples:
             bnode_dict = self._blank_node_triple_dict(bnode_triples)
             other_bnode_dict = self._blank_node_triple_dict(other_bnode_triples)
             if len(bnode_dict) != len(other_bnode_dict):
@@ -36,6 +35,9 @@ class Graph(set):
                 return False
         else:
             return True
+
+    def __ne__(self, other):
+        return not self == other
 
     @classmethod
     def _blank_node_triples(cls, triples):

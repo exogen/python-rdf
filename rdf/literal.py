@@ -1,4 +1,6 @@
+from rdf.blanknode import BlankNode
 from rdf.uri import URI
+from rdf.namespace import XSD
 
 
 class Literal:
@@ -14,6 +16,18 @@ class Literal:
 
     def __init__(self, lexical_form):
         self.lexical_form = lexical_form
+
+    def __lt__(self, other):
+        if other is None or isinstance(other, (BlankNode, URI)):
+            return False
+        else:
+            return NotImplemented
+
+    def __gt__(self, other):
+        if other is None or isinstance(other, (BlankNode, URI)):
+            return True
+        else:
+            return NotImplemented
 
 class PlainLiteral(Literal):
     __slots__ = 'language'
@@ -38,6 +52,28 @@ class PlainLiteral(Literal):
         return (hash(PlainLiteral) ^
                 hash(self.lexical_form) ^
                 hash(self.language))
+    
+    def __lt__(self, other):
+        if (isinstance(other, PlainLiteral) and
+            self.language is None and other.language is None):
+            return self.lexical_form < other.lexical_form
+        elif (isinstance(other, TypedLiteral) and
+              other.datatype == XSD.string and
+              self.lexical_form == other.lexical_form):
+            return True
+        else:
+            return super().__lt__(other)
+    
+    def __gt__(self, other):
+        if (isinstance(other, PlainLiteral) and
+            self.language is None and other.language is None):
+            return self.lexical_form > other.lexical_form
+        elif (isinstance(other, TypedLiteral) and
+              other.datatype == XSD.string and
+              self.lexical_form == other.lexical_form):
+            return False
+        else:
+            return super().__gt__(other)
 
 class TypedLiteral(Literal):
     __slots__ = 'datatype'
@@ -45,6 +81,10 @@ class TypedLiteral(Literal):
     def __init__(self, lexical_form, datatype):
         super().__init__(lexical_form)
         self.datatype = datatype
+
+    def __repr__(self):
+        return "TypedLiteral({!r}, {!r})".format(self.lexical_form,
+                                                 self.datatype)
 
     def __eq__(self, other):
         return (isinstance(other, TypedLiteral) and
@@ -56,6 +96,16 @@ class TypedLiteral(Literal):
                 hash(self.lexical_form) ^
                 hash(self.datatype))
 
-    def __repr__(self):
-        return "TypedLiteral({!r}, {!r})".format(self.lexical_form,
-                                                 self.datatype)
+    def __lt__(self, other):
+        if (isinstance(other, TypedLiteral) and
+            self.datatype == other.datatype == XSD.string):
+            return self.lexical_form < other.lexical_form
+        else:
+            return super().__lt__(other)
+
+    def __gt__(self, other):
+        if (isinstance(other, TypedLiteral) and
+            self.datatype == other.datatype == XSD.string):
+            return self.lexical_form > other.lexical_form
+        else:
+            return super().__gt__(other)

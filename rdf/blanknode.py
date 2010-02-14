@@ -21,8 +21,8 @@ class BlankNode:
         return hash(BlankNode) ^ hash(identity)
 
     def __lt__(self, other):
-        return id(self) < id(other)
+        return False if other is None else NotImplemented
 
     def __gt__(self, other):
-        return id(self) > id(other)
+        return True if other is None else NotImplemented
 
