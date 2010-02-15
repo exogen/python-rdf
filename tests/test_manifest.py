@@ -45,6 +45,6 @@ class TestManifest(unittest.TestCase):
 
 class TestManifestFromString(TestManifest):
     def setUp(self):
-        self.string = open_data_file('Manifest.rdf').read()
+        self.string = open_data_file('manifest.rdf').read()
         self.manifest = Manifest(self.string)
 

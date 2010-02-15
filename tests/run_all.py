@@ -13,7 +13,7 @@ def all_tests():
     filenames = glob.glob(GLOB)
     names = [os.path.basename(filename)[:-3] for filename in filenames]
     suite = LOADER.loadTestsFromNames(names)
-    suite.addTests(testcases())
+    #suite.addTests(testcases())
     return suite
 
 if __name__ == '__main__':

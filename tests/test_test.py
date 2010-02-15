@@ -47,7 +47,7 @@ class TestTest(unittest.TestCase):
 class TestTestFromElement(unittest.TestCase):
     def setUp(self):
         if getattr(self, 'tag', None) is not None:
-            xml = open_data_file('Manifest.rdf').read()
+            xml = open_data_file('manifest.rdf').read()
             self.manifest = ElementTree.XML(xml)
             self.element = self.manifest.find(str(self.tag))
             self.test = Test.from_element(self.element)

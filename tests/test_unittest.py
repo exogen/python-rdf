@@ -127,7 +127,7 @@ class TestMiscellaneousTestCase(TestRDFTestCase):
 
 class TestRDFTestSuite(unittest.TestCase):
     def setUp(self):
-        self.file = open_data_file('Manifest.rdf')
+        self.file = open_data_file('manifest.rdf')
         self.manifest = Manifest(self.file)
         self.suite = RDFTestSuite.from_manifest(self.manifest,
                                                 opener=NULL_OPENER)
