@@ -1,9 +1,11 @@
 import unittest
+import pprint
 
-from rdf.namespace import TEST
+from rdf.namespace import TEST, RDF, RDFS
 from rdf.graph import Graph
 from rdf.testcases.test import Test
 from rdf.syntax.exceptions import ParseError
+from rdf.semantics.entailment import RDF_ENTAILMENT, RDFS_ENTAILMENT
 from util import TESTS
 
 
@@ -73,13 +75,44 @@ class NegativeParserTestCase(ParserTestCase):
                 pass
 
 class EntailmentTestCase(RDFTestCase):
-    pass
+    ENTAILMENT_RULES = {RDF: RDF_ENTAILMENT,
+                        RDFS: RDFS_ENTAILMENT}
+
+    def setUp(self):
+        super().setUp()
+        self.premise = Graph()
+        for premise_document in self.test.premise_documents:
+            if premise_document.type != TEST['False-Document']:
+                self.premise.update(premise_document.read(self.opener))
+            else:
+                self.premise = False
+
+        self.entailments = []
+        for rules_uri in self.test.entailment_rules:
+            entailment = self.ENTAILMENT_RULES[rules_uri]
+            self.entailments.append(entailment)
+
+        if self.test.conclusion_document.type != TEST['False-Document']:
+            self.conclusion = Graph(
+                self.test.conclusion_document.read(self.opener))
+        else:
+            self.conclusion = False
 
 class PositiveEntailmentTestCase(EntailmentTestCase):
-    pass
+    def runTest(self):
+        if self.conclusion != False:
+            self.assert_(any(entailment.entails(self.premise, self.conclusion)
+                             for entailment in self.entailments),
+                         "\n{0} does not entail \n{1}".format(
+                             pprint.pformat(self.premise),
+                             pprint.pformat(self.conclusion)))
 
 class NegativeEntailmentTestCase(EntailmentTestCase):
-    pass
+    def runTest(self):
+        if self.conclusion != False:
+            for entailment in self.entailments:
+                self.assert_(not entailment.entails(self.premise,
+                                                    self.conclusion))
 
 class MiscellaneousTestCase(RDFTestCase):
     pass

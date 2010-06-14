@@ -1,3 +1,7 @@
+import io
+
+import lxml.etree
+
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.namespace import XSD
@@ -109,3 +113,17 @@ class TypedLiteral(Literal):
             return self.lexical_form > other.lexical_form
         else:
             return super().__gt__(other)
+
+def is_well_typed_xml(str_or_literal):
+    if isinstance(str_or_literal, Literal):
+        str_or_literal = str_or_literal.lexical_form
+    try:
+        element = lxml.etree.XML(str_or_literal)
+    except lxml.etree.XMLSyntaxError:
+        return False
+    else:
+        tree = lxml.etree.ElementTree(element)
+        f = io.BytesIO()
+        tree.write_c14n(f, exclusive=True, with_comments=True)
+        return str_or_literal.encode('utf-8') == f.getvalue()
+

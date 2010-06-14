@@ -12,14 +12,54 @@ class TestEmptyGraph(unittest.TestCase):
         self.graph = Graph()
 
     def test_is_set(self):
-        self.assert_(isinstance(self.graph, set))
+        self.assertTrue(isinstance(self.graph, set))
 
     def test_repr_shows_constructor(self):
         self.assertEqual(repr(self.graph), "Graph()")
 
-    def test_not_equal_to_set(self):
-        self.assertNotEqual(self.graph, set())
-        self.assertNotEqual(set(), self.graph)
+    def test_equal_to_empty_set(self):
+        self.assertEqual(self.graph, set())
+        self.assertEqual(set(), self.graph)
+
+    def test_empty_graph_is_a_subgraph(self):
+        graph = Graph()
+        self.assertTrue(graph <= self.graph)
+        self.assertTrue(self.graph <= graph)
+
+    def test_empty_graphs_are_equal(self):
+        self.assertEqual(self.graph, Graph())
+
+    def test_empty_set_is_equal(self):
+        self.assertEqual(self.graph, set())
+
+    def test_empty_frozenset_is_equal(self):
+        self.assertEqual(self.graph, frozenset())
+
+    def test_empty_graph_is_not_a_strict_subgraph(self):
+        self.assertFalse(Graph() < self.graph)
+        self.assertFalse(self.graph < Graph())
+
+    def test_empty_graph_is_a_subgraph(self):
+        self.assertTrue(Graph() <= self.graph)
+        self.assertTrue(self.graph <= Graph())
+
+    def test_empty_set_is_not_a_strict_subset(self):
+        self.assertFalse(set() < self.graph)
+
+    def test_is_not_a_strict_subset_of_empty_set(self):
+        self.assertFalse(self.graph < set())
+
+    def test_empty_frozenset_is_not_a_strict_subset(self):
+        self.assertFalse(frozenset() < self.graph)
+
+    def test_is_not_a_strict_subset_of_empty_frozenset(self):
+        self.assertFalse(self.graph < frozenset())
+
+    def test_empty_set_is_a_subset(self):
+        self.assertTrue(set() <= self.graph)
+
+    def test_is_subset_of_empty_frozenset(self):
+        self.assertTrue(self.graph <= frozenset())
 
 class TestGroundGraph(unittest.TestCase):
     def setUp(self):
@@ -61,6 +101,32 @@ class TestGroundGraph(unittest.TestCase):
                         Literal("John Doe", XSD.string))})
         self.assertNotEqual(self.graph, graph)
         self.assertNotEqual(graph, self.graph)
+
+    def test_equal_to_set_with_same_triples(self):
+        self.assertEqual(self.triples, self.graph)
+        self.assertEqual(self.graph, self.triples)
+
+    def test_equal_to_frozenset_with_same_triples(self):
+        self.assertEqual(frozenset(self.triples), self.graph)
+        self.assertEqual(self.graph, frozenset(self.triples))
+
+    def test_not_equal_to_set_with_different_triples(self):
+        triples = {(URI('http://www.example.org/index.html'),
+                    URI('http://purl.org/dc/elements/1.1/creator'),
+                    URI('http://www.example.org/staffid/85740')),
+                   (URI('http://www.example.org/staffid/85740'),
+                    URI('http://xmlns.com/foaf/0.1/name'),
+                    Literal("John Doe", XSD.string))}
+        self.assertNotEqual(self.graph, triples)
+
+    def test_not_equal_to_frozenset_with_different_triples(self):
+        triples = {(URI('http://www.example.org/index.html'),
+                    URI('http://purl.org/dc/elements/1.1/creator'),
+                    URI('http://www.example.org/staffid/85740')),
+                   (URI('http://www.example.org/staffid/85740'),
+                    URI('http://xmlns.com/foaf/0.1/name'),
+                    Literal("John Doe", XSD.string))}
+        self.assertNotEqual(self.graph, frozenset(triples))
 
 class TestUngroundGraph(unittest.TestCase):
     def setUp(self):
@@ -131,13 +197,13 @@ class TestUngroundGraph(unittest.TestCase):
     def test_equal_to_graph_with_valid_bijection(self):
         graph = Graph({(URI('http://www.example.org/index.html'),
                         URI('http://purl.org/dc/elements/1.1/creator'),
-                        BlankNode('paul')),
-                       (BlankNode('paul'),
+                        BlankNode('lennon')),
+                       (BlankNode('lennon'),
                         URI('http://xmlns.com/foaf/0.1/name'),
                         Literal("John Lennon", XSD.string)),
-                       (BlankNode('paul'),
+                       (BlankNode('lennon'),
                         URI('http://xmlns.com/foaf/0.1/knows'),
-                        BlankNode('john'))})
+                        BlankNode('starr'))})
         self.assertEqual(self.graph, graph)
         self.assertEqual(graph, self.graph)
 
@@ -153,4 +219,34 @@ class TestUngroundGraph(unittest.TestCase):
                         BlankNode('john'))})
         self.assertNotEqual(self.graph, graph)
         self.assertNotEqual(graph, self.graph)
+    
+    def test_not_equal_to_set_with_valid_bijection(self):
+        triples = {(URI('http://www.example.org/index.html'),
+                    URI('http://purl.org/dc/elements/1.1/creator'),
+                    BlankNode('lennon')),
+                   (BlankNode('lennon'),
+                    URI('http://xmlns.com/foaf/0.1/name'),
+                    Literal("John Lennon", XSD.string)),
+                   (BlankNode('lennon'),
+                    URI('http://xmlns.com/foaf/0.1/knows'),
+                    BlankNode('starr'))}
+        self.assertNotEqual(self.graph, triples)
+
+    def test_not_equal_to_frozenset_with_valid_bijection(self):
+        triples = {(URI('http://www.example.org/index.html'),
+                    URI('http://purl.org/dc/elements/1.1/creator'),
+                    BlankNode('lennon')),
+                   (BlankNode('lennon'),
+                    URI('http://xmlns.com/foaf/0.1/name'),
+                    Literal("John Lennon", XSD.string)),
+                   (BlankNode('lennon'),
+                    URI('http://xmlns.com/foaf/0.1/knows'),
+                    BlankNode('starr'))}
+        self.assertNotEqual(self.graph, frozenset(triples))
+
+    def test_equal_to_set_with_identical_triples(self):
+        self.assertEqual(self.graph, self.triples)
+
+    def test_equal_to_frozenset_with_identical_triples(self):
+        self.assertEqual(self.graph, frozenset(self.triples))
 
