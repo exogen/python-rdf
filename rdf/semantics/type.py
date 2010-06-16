@@ -4,12 +4,24 @@ from rdf.literal import Literal, PlainLiteral, TypedLiteral, is_well_typed_xml
 from rdf.namespace import RDF
 
 
+class TypeDescriptor:
+    def __init__(self, type):
+        self.type = type
+
+class BlankNodeDescriptor(TypeDescriptor):
+    def __init__(self, type):
+        super().__init__(type)
+        self.blank_node = BlankNode()
+
+    def __call__(self, obj):
+        return self.blank_node
+
 class Type:
     def __init__(self, class_set):
         if isinstance(class_set, type):
             class_set = (class_set,)
         self.class_set = frozenset(class_set)
-        self.blank_node = self.nnn = object()
+        self.blank_node = self.nnn = BlankNodeDescriptor(self)
 
     def __contains__(self, obj):
         return isinstance(obj, tuple(self.class_set))
@@ -25,11 +37,14 @@ class ContainerMembershipPropertyType(Type):
         else:
             return False
 
+class DatatypeDescriptor(TypeDescriptor):
+    def __call__(self, obj):
+        return obj.datatype
+
 class TypedLiteralType(Type):
     def __init__(self):
         super().__init__(TypedLiteral)
-        self.lexical_form = self.sss = object()
-        self.datatype = self.ddd = object()
+        self.datatype = self.ddd = DatatypeDescriptor(self)
 
 class WellTypedXMLLiteralType(Type):
     def __init__(self):
