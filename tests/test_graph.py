@@ -29,12 +29,6 @@ class TestEmptyGraph(unittest.TestCase):
     def test_empty_graphs_are_equal(self):
         self.assertEqual(self.graph, Graph())
 
-    def test_empty_set_is_equal(self):
-        self.assertEqual(self.graph, set())
-
-    def test_empty_frozenset_is_equal(self):
-        self.assertEqual(self.graph, frozenset())
-
     def test_empty_graph_is_not_a_strict_subgraph(self):
         self.assertFalse(Graph() < self.graph)
         self.assertFalse(self.graph < Graph())
@@ -43,14 +37,28 @@ class TestEmptyGraph(unittest.TestCase):
         self.assertTrue(Graph() <= self.graph)
         self.assertTrue(self.graph <= Graph())
 
+    def test_empty_graph_is_not_a_strict_supergraph(self):
+        self.assertFalse(Graph() > self.graph)
+        self.assertFalse(self.graph > Graph())
+
+    def test_empty_graph_is_a_supergraph(self):
+        self.assertTrue(Graph() >= self.graph)
+        self.assertTrue(self.graph >= Graph())
+
+    def test_empty_set_is_equal(self):
+        self.assertEqual(self.graph, set())
+
+    def test_empty_frozenset_is_equal(self):
+        self.assertEqual(self.graph, frozenset())
+
     def test_empty_set_is_not_a_strict_subset(self):
         self.assertFalse(set() < self.graph)
 
-    def test_is_not_a_strict_subset_of_empty_set(self):
-        self.assertFalse(self.graph < set())
-
     def test_empty_frozenset_is_not_a_strict_subset(self):
         self.assertFalse(frozenset() < self.graph)
+
+    def test_is_not_a_strict_subset_of_empty_set(self):
+        self.assertFalse(self.graph < set())
 
     def test_is_not_a_strict_subset_of_empty_frozenset(self):
         self.assertFalse(self.graph < frozenset())
@@ -58,8 +66,38 @@ class TestEmptyGraph(unittest.TestCase):
     def test_empty_set_is_a_subset(self):
         self.assertTrue(set() <= self.graph)
 
+    def test_empty_frozenset_is_a_subset(self):
+        self.assertTrue(frozenset() <= self.graph)
+
+    def test_is_subset_of_empty_set(self):
+        self.assertTrue(self.graph <= set())
+
     def test_is_subset_of_empty_frozenset(self):
         self.assertTrue(self.graph <= frozenset())
+
+    def test_empty_set_is_not_a_strict_superset(self):
+        self.assertFalse(set() > self.graph)
+
+    def test_empty_frozenset_is_not_a_strict_superset(self):
+        self.assertFalse(frozenset() > self.graph)
+
+    def test_is_not_a_strict_superset_of_empty_set(self):
+        self.assertFalse(self.graph > set())
+
+    def test_is_not_a_strict_superset_of_empty_frozenset(self):
+        self.assertFalse(self.graph > frozenset())
+
+    def test_empty_set_is_a_superset(self):
+        self.assertTrue(set() >= self.graph)
+
+    def test_empty_frozenset_is_a_superset(self):
+        self.assertTrue(frozenset() >= self.graph)
+
+    def test_is_superset_of_empty_set(self):
+        self.assertTrue(self.graph >= set())
+
+    def test_is_superset_of_empty_frozenset(self):
+        self.assertTrue(self.graph >= frozenset())
 
 class TestGroundGraph(unittest.TestCase):
     def setUp(self):
@@ -127,6 +165,43 @@ class TestGroundGraph(unittest.TestCase):
                     URI('http://xmlns.com/foaf/0.1/name'),
                     Literal("John Doe", XSD.string))}
         self.assertNotEqual(self.graph, frozenset(triples))
+
+    def test_graph_with_same_triples_is_not_a_strict_subgraph(self):
+        self.assertFalse(Graph(self.triples) < self.graph)
+        self.assertFalse(self.graph < Graph(self.triples))
+
+    def test_graph_with_same_triples_is_subgraph(self):
+        self.assert_(Graph(self.triples) <= self.graph)
+        self.assert_(self.graph <= Graph(self.triples))
+
+    def test_empty_graph_is_a_subgraph(self):
+        self.assert_(Graph() < self.graph)
+
+    def test_empty_set_is_a_subset(self):
+        self.assert_(set() < self.graph)
+
+    def test_empty_frozenset_is_a_subset(self):
+        self.assert_(frozenset() < self.graph)
+
+    def test_set_with_same_triples_is_not_a_strict_subset(self):
+        self.assertFalse(self.triples < self.graph)
+        self.assertFalse(self.graph < self.triples)
+
+    def test_set_with_same_triples_is_not_a_strict_superset(self):
+        self.assertFalse(self.triples > self.graph)
+        self.assertFalse(self.graph > self.triples)
+
+    def test_set_with_same_triples_is_subset(self):
+        self.assert_(self.triples <= self.graph)
+        self.assert_(self.graph <= self.triples)
+
+    def test_frozenset_with_same_triples_is_not_a_strict_subset(self):
+        self.assertFalse(frozenset(self.triples) < self.graph)
+        self.assertFalse(self.graph < frozenset(self.triples))
+
+    def test_frozenset_with_same_triples_is_subset(self):
+        self.assert_(frozenset(self.triples) <= self.graph)
+        self.assert_(self.graph <= frozenset(self.triples))
 
 class TestUngroundGraph(unittest.TestCase):
     def setUp(self):
@@ -233,3 +308,14 @@ class TestUngroundGraph(unittest.TestCase):
     def test_equal_to_frozenset_with_identical_triples(self):
         self.assertEqual(self.graph, frozenset(self.triples))
 
+    def test_graph_with_valid_bijection_is_subgraph(self):
+        self.assert_(Graph(self.bijection) <= self.graph)
+
+    def graph_with_valid_bijection_is_not_a_strict_subgraph(self):
+        self.assertFalse(Graph(self.bijection) < self.graph)
+
+    def test_is_subgraph_of_graph_with_valid_bijection(self):
+        self.assert_(self.graph <= Graph(self.bijection))
+
+    def test_is_not_a_strict_subgraph_of_graph_with_valid_bijection(self):
+        self.assertFalse(self.graph < Graph(self.bijection))

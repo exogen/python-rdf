@@ -47,6 +47,33 @@ class Graph(set):
     def __ne__(self, other):
         return not self == other
 
+    def __lt__(self, other):
+        if not isinstance(other, (set, frozenset)):
+            return NotImplemented
+        elif len(self) >= len(other):
+            return False
+        elif not isinstance(other, Graph):
+            return frozenset(self) < other
+
+        ground_triples = set(self._ground_triples())
+        other_ground_triples = set(other._ground_triples())
+        if ground_triples <= other_ground_triples:
+            has_ground_subgraph = (len(ground_triples) <
+                                   len(other_ground_triples))
+            bnode_triples = set(self._bnode_triples())
+            other_bnode_triples = set(other._bnode_triples())
+            if bnode_triples:
+                bnode_dict = self._bnode_dict(bnode_triples)
+                other_bnode_dict = other._bnode_dict(other_bnode_triples)
+                if len(bnode_dict) > len(other_bnode_dict):
+                    return False
+                signatures = self._bnode_signatures(bnode_dict)
+                other_signatures = other._bnode_signatures(other_bnode_dict)
+            else:
+                return has_ground_subgraph
+        else:
+            return False
+
     def is_ground(self):
         for triple in self._bnode_triples():
             return False
