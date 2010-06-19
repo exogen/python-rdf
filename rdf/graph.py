@@ -19,9 +19,9 @@ class Graph(set):
             return False
 
         bnode_triples = set(self._bnode_triples())
-        other_bnode_triples = set(other._bnode_triples())
         if not bnode_triples:
             return True
+        other_bnode_triples = set(other._bnode_triples())
 
         bnode_dict = self._bnode_dict(bnode_triples)
         other_bnode_dict = other._bnode_dict(other_bnode_triples)
