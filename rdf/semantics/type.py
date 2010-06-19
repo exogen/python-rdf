@@ -9,12 +9,8 @@ class TypeDescriptor:
         self.type = type
 
 class BlankNodeDescriptor(TypeDescriptor):
-    def __init__(self, type):
-        super().__init__(type)
-        self.blank_node = BlankNode()
-
-    def __call__(self, obj):
-        return self.blank_node
+    def __call__(self, obj, context):
+        return context.allocate(obj)
 
 class Type:
     def __init__(self, class_set):
@@ -38,7 +34,7 @@ class ContainerMembershipPropertyType(Type):
             return False
 
 class DatatypeDescriptor(TypeDescriptor):
-    def __call__(self, obj):
+    def __call__(self, obj, context):
         return obj.datatype
 
 class TypedLiteralType(Type):
