@@ -139,6 +139,15 @@ class TestUngroundGraph(unittest.TestCase):
                         (BlankNode('john'),
                          URI('http://xmlns.com/foaf/0.1/knows'),
                          BlankNode('paul'))}
+        self.bijection = {(URI('http://www.example.org/index.html'),
+                           URI('http://purl.org/dc/elements/1.1/creator'),
+                           BlankNode('lennon')),
+                          (BlankNode('lennon'),
+                           URI('http://xmlns.com/foaf/0.1/name'),
+                           Literal("John Lennon", XSD.string)),
+                          (BlankNode('lennon'),
+                           URI('http://xmlns.com/foaf/0.1/knows'),
+                           BlankNode('starr'))}
         self.graph = Graph(self.triples)
 
     def test_is_ground_is_false(self):
@@ -195,15 +204,7 @@ class TestUngroundGraph(unittest.TestCase):
         self.assertNotEqual(graph, self.graph)        
 
     def test_equal_to_graph_with_valid_bijection(self):
-        graph = Graph({(URI('http://www.example.org/index.html'),
-                        URI('http://purl.org/dc/elements/1.1/creator'),
-                        BlankNode('lennon')),
-                       (BlankNode('lennon'),
-                        URI('http://xmlns.com/foaf/0.1/name'),
-                        Literal("John Lennon", XSD.string)),
-                       (BlankNode('lennon'),
-                        URI('http://xmlns.com/foaf/0.1/knows'),
-                        BlankNode('starr'))})
+        graph = Graph(self.bijection)
         self.assertEqual(self.graph, graph)
         self.assertEqual(graph, self.graph)
 
@@ -221,28 +222,10 @@ class TestUngroundGraph(unittest.TestCase):
         self.assertNotEqual(graph, self.graph)
     
     def test_not_equal_to_set_with_valid_bijection(self):
-        triples = {(URI('http://www.example.org/index.html'),
-                    URI('http://purl.org/dc/elements/1.1/creator'),
-                    BlankNode('lennon')),
-                   (BlankNode('lennon'),
-                    URI('http://xmlns.com/foaf/0.1/name'),
-                    Literal("John Lennon", XSD.string)),
-                   (BlankNode('lennon'),
-                    URI('http://xmlns.com/foaf/0.1/knows'),
-                    BlankNode('starr'))}
-        self.assertNotEqual(self.graph, triples)
+        self.assertNotEqual(self.graph, self.bijection)
 
     def test_not_equal_to_frozenset_with_valid_bijection(self):
-        triples = {(URI('http://www.example.org/index.html'),
-                    URI('http://purl.org/dc/elements/1.1/creator'),
-                    BlankNode('lennon')),
-                   (BlankNode('lennon'),
-                    URI('http://xmlns.com/foaf/0.1/name'),
-                    Literal("John Lennon", XSD.string)),
-                   (BlankNode('lennon'),
-                    URI('http://xmlns.com/foaf/0.1/knows'),
-                    BlankNode('starr'))}
-        self.assertNotEqual(self.graph, frozenset(triples))
+        self.assertNotEqual(self.graph, frozenset(self.bijection))
 
     def test_equal_to_set_with_identical_triples(self):
         self.assertEqual(self.graph, self.triples)
