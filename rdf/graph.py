@@ -1,3 +1,4 @@
+import operator
 from collections import defaultdict
 from itertools import product
 
@@ -21,8 +22,8 @@ class Graph(set):
         bnode_triples = set(self._bnode_triples())
         if not bnode_triples:
             return True
-        other_bnode_triples = set(other._bnode_triples())
 
+        other_bnode_triples = set(other._bnode_triples())
         bnode_dict = self._bnode_dict(bnode_triples)
         other_bnode_dict = other._bnode_dict(other_bnode_triples)
         if len(bnode_dict) != len(other_bnode_dict):
@@ -36,9 +37,8 @@ class Graph(set):
             return False
 
         for bijection in self._bnode_bijections(signatures, other_signatures):
-            for triple in self._apply_bijection(bijection,
-                                                other_bnode_triples):
-                if triple not in bnode_triples:
+            for triple in self._apply_bijection(bijection, bnode_triples):
+                if triple not in other_bnode_triples:
                     break
             else:
                 return True
@@ -57,22 +57,43 @@ class Graph(set):
 
         ground_triples = set(self._ground_triples())
         other_ground_triples = set(other._ground_triples())
-        if ground_triples <= other_ground_triples:
-            has_ground_subgraph = (len(ground_triples) <
-                                   len(other_ground_triples))
-            bnode_triples = set(self._bnode_triples())
-            other_bnode_triples = set(other._bnode_triples())
-            if bnode_triples:
-                bnode_dict = self._bnode_dict(bnode_triples)
-                other_bnode_dict = other._bnode_dict(other_bnode_triples)
-                if len(bnode_dict) > len(other_bnode_dict):
-                    return False
-                signatures = self._bnode_signatures(bnode_dict)
-                other_signatures = other._bnode_signatures(other_bnode_dict)
-            else:
-                return has_ground_subgraph
-        else:
+        if not ground_triples <= other_ground_triples:
             return False
+
+        bnode_triples = set(self._bnode_triples())
+        other_bnode_triples = set(other._bnode_triples())
+        if not bnode_triples:
+            return True
+
+        bnode_dict = self._bnode_dict(bnode_triples)
+        other_bnode_dict = other._bnode_dict(other_bnode_triples)
+        if len(bnode_dict) > len(other_bnode_dict):
+            return False
+
+        signatures = self._bnode_signatures(bnode_dict)
+        other_signatures = other._bnode_signatures(other_bnode_dict)
+        for bijection in self._bnode_bijections(signatures, other_signatures,
+            self._subgraph_bnode_comparator):
+            for triple in self._apply_bijection(bijection, bnode_triples):
+                if triple not in other_bnode_triples:
+                    break
+            else:
+                return True
+        return False
+
+    def __le__(self, other):
+        return self == other or self < other
+
+    def __gt__(self, other):
+        if isinstance(other, Graph):
+            return other < self
+        elif isinstance(other, (set, frozenset)):
+            return frozenset(self) > other
+        else:
+            return NotImplemented
+
+    def __ge__(self, other):
+        return self == other or self > other
 
     def is_ground(self):
         for triple in self._bnode_triples():
@@ -134,23 +155,27 @@ class Graph(set):
         return map
 
     def _bnode_signatures(self, bnode_dict):
+        placeholders = {}
         signatures = {}
-        for bnode, triples in bnode_dict.items():
-            signatures[bnode] = set(self._bnode_signature(bnode, triples))
+        bnode_triples = bnode_dict.items()
+        for bnode, triples in bnode_triples:
+            placeholders[bnode] = self._bnode_placeholder(bnode, triples)
+        for bnode, triples in bnode_triples:
+            signatures[bnode] = set(self._bnode_signature(bnode, triples,
+                                                          placeholders))
         return signatures
 
-    def _bnode_signature(self, bnode, triples):
+    def _bnode_signature(self, bnode, triples, placeholders):
+        for triple in triples:
+            yield tuple(placeholders.get(term, term) for term in triple)
+
+    def _bnode_placeholder(self, bnode, triples):
         subject_count = 0
-        predicate_count = 0
         object_count = 0
         for triple in triples:
             subject_count += int(triple[0] == bnode)
-            predicate_count += int(triple[1] == bnode)
             object_count += int(triple[2] == bnode)
-        counts = (subject_count, predicate_count, object_count)
-        for triple in triples:
-            yield tuple(counts if isinstance(term, BlankNode) else term
-                        for term in triple)
+        return (subject_count, object_count)
 
     def _metasignature(self, signatures):
         metasignature = defaultdict(int)
@@ -159,11 +184,34 @@ class Graph(set):
                 metasignature[triple] += 1
         return metasignature
 
-    def _bnode_bijections(self, a_signatures, b_signatures):
+    def _subgraph_bnode_comparator(self, a_signature, b_signature):
+        if len(a_signature) <= len(b_signature):
+            for a_triple in a_signature:
+                for b_triple in b_signature:
+                    if self._subgraph_triple_comparator(a_triple, b_triple):
+                        break
+                else:
+                    return False
+            return True
+        else:
+            return False
+            
+    def _subgraph_triple_comparator(self, a_triple, b_triple):
+        for a_term, b_term in zip(a_triple, b_triple):
+            if isinstance(a_term, tuple) and isinstance(b_term, tuple):
+                for a_count, b_count in zip(a_term, b_term):
+                    if a_count > b_count:
+                        return False
+            elif a_term != b_term:
+                return False
+        return True
+
+    def _bnode_bijections(self, a_signatures, b_signatures,
+                          comparator=operator.eq):
         candidates = defaultdict(set)
         for a_bnode, a_signature in a_signatures.items():
             for b_bnode, b_signature in b_signatures.items():
-                if a_signature == b_signature:
+                if comparator(a_signature, b_signature):
                     candidates[a_bnode].add(b_bnode)
 
         product_args = [[(a_bnode, b_bnode) for b_bnode in b_bnodes]
@@ -171,8 +219,8 @@ class Graph(set):
         for pairs in product(*product_args):
             bijection = {}
             for a_bnode, b_bnode in pairs:
-                if b_bnode not in bijection:
-                    bijection[b_bnode] = a_bnode
+                if a_bnode not in bijection:
+                    bijection[a_bnode] = b_bnode
                 else:
                     break
             else:

@@ -6,6 +6,8 @@ from rdf.literal import Literal
 from rdf.namespace import XSD
 from rdf.graph import Graph
 
+from util import EX
+
 
 class TestEmptyGraph(unittest.TestCase):
     def setUp(self):
@@ -187,10 +189,6 @@ class TestGroundGraph(unittest.TestCase):
         self.assertFalse(self.triples < self.graph)
         self.assertFalse(self.graph < self.triples)
 
-    def test_set_with_same_triples_is_not_a_strict_superset(self):
-        self.assertFalse(self.triples > self.graph)
-        self.assertFalse(self.graph > self.triples)
-
     def test_set_with_same_triples_is_subset(self):
         self.assert_(self.triples <= self.graph)
         self.assert_(self.graph <= self.triples)
@@ -202,6 +200,42 @@ class TestGroundGraph(unittest.TestCase):
     def test_frozenset_with_same_triples_is_subset(self):
         self.assert_(frozenset(self.triples) <= self.graph)
         self.assert_(self.graph <= frozenset(self.triples))
+
+    def test_graph_with_same_triples_is_not_a_strict_supergraph(self):
+        self.assertFalse(Graph(self.triples) > self.graph)
+        self.assertFalse(self.graph > Graph(self.triples))
+
+    def test_graph_with_same_triples_is_supergraph(self):
+        self.assert_(Graph(self.triples) >= self.graph)
+        self.assert_(self.graph >= Graph(self.triples))
+
+    def test_empty_graph_is_not_a_supergraph(self):
+        self.assertFalse(Graph() >= self.graph)
+
+    def test_is_supergraph_of_empty_graph(self):
+        self.assert_(self.graph >= Graph())
+
+    def test_is_superset_of_empty_set(self):
+        self.assert_(self.graph > set())
+
+    def test_is_superset_of_empty_frozenset(self):
+        self.assert_(self.graph > frozenset())
+
+    def test_set_with_same_triples_is_not_a_strict_superset(self):
+        self.assertFalse(self.triples > self.graph)
+        self.assertFalse(self.graph > self.triples)
+
+    def test_set_with_same_triples_is_superset(self):
+        self.assert_(self.triples >= self.graph)
+        self.assert_(self.graph >= self.triples)
+
+    def test_frozenset_with_same_triples_is_not_a_strict_superset(self):
+        self.assertFalse(frozenset(self.triples) > self.graph)
+        self.assertFalse(self.graph > frozenset(self.triples))
+
+    def test_frozenset_with_same_triples_is_superset(self):
+        self.assert_(frozenset(self.triples) >= self.graph)
+        self.assert_(self.graph >= frozenset(self.triples))
 
 class TestUngroundGraph(unittest.TestCase):
     def setUp(self):
@@ -319,3 +353,66 @@ class TestUngroundGraph(unittest.TestCase):
 
     def test_is_not_a_strict_subgraph_of_graph_with_valid_bijection(self):
         self.assertFalse(self.graph < Graph(self.bijection))
+
+    def test_graph_with_valid_bijection_is_supergraph(self):
+        self.assert_(Graph(self.bijection) >= self.graph)
+
+    def graph_with_valid_bijection_is_not_a_strict_supergraph(self):
+        self.assertFalse(Graph(self.bijection) > self.graph)
+
+    def test_is_supergraph_of_graph_with_valid_bijection(self):
+        self.assert_(self.graph >= Graph(self.bijection))
+
+    def test_is_not_a_strict_supergraph_of_graph_with_valid_bijection(self):
+        self.assertFalse(self.graph > Graph(self.bijection))
+
+class TestMixedGraph(unittest.TestCase):
+    def setUp(self):
+        self.triples = {(URI('http://www.example.org/index.html'),
+                         URI('http://purl.org/dc/elements/1.1/creator'),
+                         BlankNode('john')),
+                        (BlankNode('john'),
+                         URI('http://xmlns.com/foaf/0.1/name'),
+                         Literal("John Lennon", XSD.string)),
+                        (BlankNode('john'),
+                         URI('http://xmlns.com/foaf/0.1/knows'),
+                         BlankNode('paul')),
+                        (EX.a, EX.property, EX.b),
+                        (EX.b, EX.property, EX.c)}
+        self.bijection = {(URI('http://www.example.org/index.html'),
+                           URI('http://purl.org/dc/elements/1.1/creator'),
+                           BlankNode('lennon')),
+                          (BlankNode('lennon'),
+                           URI('http://xmlns.com/foaf/0.1/name'),
+                           Literal("John Lennon", XSD.string)),
+                          (BlankNode('lennon'),
+                           URI('http://xmlns.com/foaf/0.1/knows'),
+                           BlankNode('starr'))}
+        self.graph = Graph(self.triples)
+        self.subgraph = Graph(self.bijection)
+
+    def test_is_ground_is_false(self):
+        self.assertEqual(self.graph.is_ground(), False)
+
+    def test_valid_bijection_of_subset_is_a_strict_subgraph(self):
+        self.assert_(self.subgraph < self.graph)
+
+    def test_valid_bijection_of_subset_is_a_subgraph(self):
+        self.assert_(self.subgraph <= self.graph)
+
+    def test_is_a_strict_supergraph_of_valid_bijection_of_subset(self):
+        self.assert_(self.graph > self.subgraph)
+
+    def test_is_a_supergraph_of_valid_bijection_of_subset(self):
+        self.assert_(self.graph >= self.subgraph)
+
+    def test_is_not_a_subgraph_of_valid_bijection_of_subset(self):
+        self.assertFalse(self.graph <= self.subgraph)
+
+    def test_is_not_a_strict_subgraph_of_valid_bijection_of_subset(self):
+        self.assertFalse(self.graph < self.subgraph)
+
+    def test_is_not_equal_to_subgraph(self):
+        self.assert_(self.graph != self.subgraph)
+        self.assert_(self.subgraph != self.graph)
+
