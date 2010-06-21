@@ -9,6 +9,12 @@ from rdf.literal import Literal, TypedLiteral
 
 class Graph(set):
     def __eq__(self, other):
+        """x == y: Return True if x is isomorphic to y.
+
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
         if not isinstance(other, (set, frozenset)) or len(self) != len(other):
             return False
         elif not isinstance(other, Graph):
@@ -45,9 +51,21 @@ class Graph(set):
         return False
 
     def __ne__(self, other):
+        """x != y: Return True if x is not isomorphic to y.
+    
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
         return not self == other
 
     def __lt__(self, other):
+        """x < y: Return True if x is a proper subgraph of y.
+
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
         if not isinstance(other, (set, frozenset)):
             return NotImplemented
         elif len(self) >= len(other):
@@ -81,10 +99,13 @@ class Graph(set):
                 return True
         return False
 
-    def __le__(self, other):
-        return self == other or self < other
-
     def __gt__(self, other):
+        """x > y: Return True if x is a proper supergraph of y.
+
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
         if isinstance(other, Graph):
             return other < self
         elif isinstance(other, (set, frozenset)):
@@ -92,15 +113,32 @@ class Graph(set):
         else:
             return NotImplemented
 
+    def __le__(self, other):
+        """x <= y: Return True if x is a subgraph of y.
+
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
+        return self == other or self < other
+
     def __ge__(self, other):
+        """x >= y: Return True if x is a supergraph of y.
+
+        If y is a set or frozenset but not a Graph, standard set comparisons
+        are performed instead - isomorphism is not determined.
+
+        """
         return self == other or self > other
 
     def is_ground(self):
+        """Return True if the graph contains no blank nodes, False otherwise."""
         for triple in self._bnode_triples():
             return False
         return True
     
     def nodes(self):
+        """Return a set of the subjects and objects of triples in the graph."""
         return set(self._nodes())
 
     def _nodes(self):
@@ -109,6 +147,11 @@ class Graph(set):
             yield triple[2]
 
     def names(self):
+        """
+        Return a set of the URIs and literals in the graph, including the
+        datatype URIs of typed literals.
+
+        """
         return set(self._names())
     
     def _names(self):
@@ -122,6 +165,11 @@ class Graph(set):
                 yield triple[2].datatype
 
     def vocabulary(self, include_datatypes=False):
+        """
+        Return a set of the URIs and literals in the graph, only including
+        the datatype URIs of typed literals if include_datatypes is True.
+
+        """
         return set(self._vocabulary(include_datatypes))
 
     def _vocabulary(self, include_datatypes=False):
