@@ -1,40 +1,47 @@
+import pprint
+import logging
+
 from rdf.namespace import RDF, RDFS
 from rdf.graph import Graph
-from rdf.semantics.rule import Rule, Pattern
+from rdf.semantics.rule import Rule, Pattern, Context
 from rdf.semantics.type import aaa, bbb, ddd, eee, uuu, vvv, xxx, yyy, lll, \
                                llp, llt, llx, cmp
 
 
 class Entailment:
-    def __init__(self, conditions, axioms, rules):
-        self.conditions = list(conditions)
-        self.axioms = [Pattern(axiom) for axiom in axioms]
+    def __init__(self, rules=(), axioms=(), conditions=()):
         self.rules = list(rules)
+        self.axioms = [Pattern(axiom) for axiom in axioms]
+        self.conditions = list(conditions)
 
     def entails(self, s, e):
-        if s == e:
+        if s >= e:
             return True
-        entailed = Graph()
-        for rule in self.rules:
-            entailed.update(rule.apply(s))
+        graph = s | Graph(self.axioms)
+        entailed = Graph(graph)
+        context = Context()
+        entailed_size = None
+        while len(entailed) != entailed_size:
+            entailed_size = len(entailed)
+            for rule in self.rules:
+                entailed.update(rule.apply(graph, context))
+        print("ENTAILED: {!r}".format(entailed))
         for triple in e:
-            for pattern in self.axioms:
-                if not pattern.matches(triple):
-                    break
-            else:
-                return True
             if triple not in entailed:
-                break
-        else:
-            return True
-        return False
+                for entailed_triple in entailed:
+                    pattern = Pattern(entailed_triple)
+                    if pattern.matches(triple):
+                        break
+                else:
+                    return False
+        return True
 
 # Simple entailment rules
 # http://www.w3.org/TR/rdf-mt/#simpleRules
 se1 = Rule({(uuu, aaa, xxx)}, {(uuu, aaa, xxx.nnn)}, name='se1')
 se2 = Rule({(uuu, aaa, xxx)}, {(uuu, aaa, uuu.nnn)}, name='se2')
 
-SIMPLE_ENTAILMENT = Entailment([], [], [se1, se2])
+SIMPLE_ENTAILMENT = Entailment([se1, se2])
 
 # Literal generalization rule
 lg = Rule({(uuu, aaa, lll)}, {(uuu, aaa, lll.nnn)}, name='lg')
@@ -55,7 +62,7 @@ RDF_AXIOMATIC_TRIPLES = {(RDF.type, RDF.type, RDF.Property),
                          (cmp, RDF.type, RDF.Property),
                          (RDF.nil, RDF.type, RDF.Property)}
 
-RDF_ENTAILMENT = Entailment([], RDF_AXIOMATIC_TRIPLES, [rdf1, rdf2])
+RDF_ENTAILMENT = Entailment([rdf1, rdf2], RDF_AXIOMATIC_TRIPLES)
 
 rdfs1 = Rule({(uuu, aaa, llp)},
              {(llp.nnn, RDF.type, RDFS.Literal)}, name='rdfs1')
@@ -86,7 +93,9 @@ rdfs12 = Rule({(uuu, RDF.type, RDFS.ContainerMembershipProperty)},
 rdfs13 = Rule({(uuu, RDF.type, RDFS.Datatype)},
               {(uuu, RDFS.subClassOf, RDFS.Literal)}, name='rdfs13')
 
-RDFS_ENTAILMENT = Entailment([],
+RDFS_ENTAILMENT = Entailment(
+    [rdfs1, rdfs2, rdfs3, rdfs4a, rdfs4b, rdfs5, rdfs6, rdfs7, rdfs8, rdfs9,
+     rdfs10, rdfs11, rdfs12, rdfs13],
     [(RDF.type, RDFS.domain, RDFS.Resource),
      (RDFS.domain, RDFS.domain, RDF.Property),
      (RDFS.range, RDFS.domain, RDF.Property),
@@ -129,16 +138,17 @@ RDFS_ENTAILMENT = Entailment([],
      (RDFS.Datatype, RDFS.subClassOf, RDFS.Class),
      (cmp, RDF.type, RDFS.ContainerMembershipProperty),
      (cmp, RDFS.domain, RDFS.Resource),
-     (cmp, RDFS.range, RDFS.Resource)],
-    [rdfs1, rdfs2, rdfs3, rdfs4a, rdfs4b, rdfs5, rdfs6, rdfs7, rdfs8, rdfs9,
-     rdfs10, rdfs11, rdfs12, rdfs13])
+     (cmp, RDFS.range, RDFS.Resource)])
 
 # Datatype entailment rules
 # http://www.w3.org/TR/rdf-mt/#DtypeRules
 
 rdfD1 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
              {(llt.nnn, RDF.type, llt.ddd)}, name='rdfD1')
+#rdfD2 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
+#             {(uuu, aaa, )}, name='rdfD1')
+rdfD3 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
+             {(llt.nnn, RDF.type, llt.ddd)}, name='rdfD1')
 
-DATATYPE_ENTAILMENT = Entailment([], [], [])
-
+DATATYPE_ENTAILMENT = Entailment([rdfD1, rdfD3])
 

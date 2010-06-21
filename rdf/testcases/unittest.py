@@ -5,7 +5,8 @@ from rdf.namespace import TEST, RDF, RDFS
 from rdf.graph import Graph
 from rdf.testcases.test import Test
 from rdf.syntax.exceptions import ParseError
-from rdf.semantics.entailment import RDF_ENTAILMENT, RDFS_ENTAILMENT
+from rdf.semantics.entailment import Entailment, SIMPLE_ENTAILMENT, \
+    RDF_ENTAILMENT, RDFS_ENTAILMENT, DATATYPE_ENTAILMENT
 from util import TESTS
 
 
@@ -75,8 +76,10 @@ class NegativeParserTestCase(ParserTestCase):
                 pass
 
 class EntailmentTestCase(RDFTestCase):
-    ENTAILMENT_RULES = {RDF: RDF_ENTAILMENT,
-                        RDFS: RDFS_ENTAILMENT}
+    ENTAILMENT_RULES = {TEST.SimpleEntailment: SIMPLE_ENTAILMENT,
+                        RDF: RDF_ENTAILMENT,
+                        RDFS: RDFS_ENTAILMENT,
+                        TESTS['datatypes#']: DATATYPE_ENTAILMENT}
 
     def setUp(self):
         super().setUp()
@@ -91,6 +94,14 @@ class EntailmentTestCase(RDFTestCase):
         for rules_uri in self.test.entailment_rules:
             entailment = self.ENTAILMENT_RULES[rules_uri]
             self.entailments.append(entailment)
+        if SIMPLE_ENTAILMENT not in self.entailments:
+            self.entailments.append(SIMPLE_ENTAILMENT)
+
+        self.merged_entailment = Entailment()
+        for entailment in self.entailments:
+            self.merged_entailment.conditions += entailment.conditions
+            self.merged_entailment.axioms += entailment.axioms
+            self.merged_entailment.rules += entailment.rules
 
         if self.test.conclusion_document.type != TEST['False-Document']:
             self.conclusion = Graph(
@@ -101,8 +112,8 @@ class EntailmentTestCase(RDFTestCase):
 class PositiveEntailmentTestCase(EntailmentTestCase):
     def runTest(self):
         if self.conclusion != False:
-            self.assert_(any(entailment.entails(self.premise, self.conclusion)
-                             for entailment in self.entailments),
+            self.assert_(self.merged_entailment.entails(self.premise,
+                                                        self.conclusion),
                          "\n{0} does not entail \n{1}".format(
                              pprint.pformat(self.premise),
                              pprint.pformat(self.conclusion)))
