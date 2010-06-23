@@ -1,17 +1,16 @@
 import pprint
-import logging
 
-from rdf.namespace import RDF, RDFS
+from rdf.namespace import RDF, RDFS, XSD
 from rdf.graph import Graph
 from rdf.semantics.rule import Rule, Pattern, Context
 from rdf.semantics.type import aaa, bbb, ddd, eee, uuu, vvv, xxx, yyy, lll, \
-                               llp, llt, llx, cmp
+                               llp, llt, lls, llx, cmp
 
 
 class Entailment:
     def __init__(self, rules=(), axioms=(), conditions=()):
         self.rules = list(rules)
-        self.axioms = [Pattern(axiom) for axiom in axioms]
+        self.axioms = {Pattern(axiom) for axiom in axioms}
         self.conditions = list(conditions)
 
     def entails(self, s, e):
@@ -150,7 +149,12 @@ rdfD1 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
 #rdfD2 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
 #             {(uuu, aaa, )}, name='rdfD1')
 rdfD3 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
-             {(llt.nnn, RDF.type, llt.ddd)}, name='rdfD1')
+             {(llt.nnn, RDF.type, llt.ddd)}, name='rdfD3')
 
-DATATYPE_ENTAILMENT = Entailment([rdfD1, rdfD3])
+xsd1a = Rule({(uuu, aaa, llp)},
+             {(uuu, aaa, llp.sss(XSD.string))}, name='xsd 1a')
+xsd1b = Rule({(uuu, aaa, lls)},
+             {(uuu, aaa, lls.sss())}, name='xsd 1b')
+
+DATATYPE_ENTAILMENT = Entailment([rdfD1, rdfD3, xsd1a, xsd1b])
 
