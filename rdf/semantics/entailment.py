@@ -1,10 +1,8 @@
-import pprint
-
 from rdf.namespace import RDF, RDFS, XSD
 from rdf.graph import Graph
 from rdf.semantics.rule import Rule, Pattern, Context
-from rdf.semantics.type import aaa, bbb, ddd, eee, uuu, vvv, xxx, yyy, lll, \
-                               llp, llt, lls, llx, cmp
+from rdf.semantics.type import aaa, bbb, ddd, eee, uuu, vvv, www, zzz, xxx, \
+                               yyy, lll, llp, llt, lls, llx, cmp
 
 
 class Entailment:
@@ -16,15 +14,16 @@ class Entailment:
     def entails(self, s, e):
         if s >= e:
             return True
-        graph = s | Graph(self.axioms)
-        entailed = Graph(graph)
+        entailed = Graph(s | self.axioms)
         context = Context()
-        entailed_size = None
-        while len(entailed) != entailed_size:
-            entailed_size = len(entailed)
+        num_triples = -1
+        while len(entailed) != num_triples:
+            num_triples = len(entailed)
             for rule in self.rules:
-                entailed.update(rule.apply(graph, context))
-        print("ENTAILED: {!r}".format(entailed))
+                entailed.update(rule.apply(entailed, context))
+                if len(entailed) != num_triples:
+                    if e <= entailed:
+                        return True
         for triple in e:
             if triple not in entailed:
                 for entailed_triple in entailed:
@@ -65,6 +64,8 @@ RDF_AXIOMATIC_TRIPLES = {(RDF.type, RDF.type, RDF.Property),
 
 RDF_ENTAILMENT = Entailment([rdf1, rdf2], RDF_AXIOMATIC_TRIPLES)
 
+# RDFS entailment rules
+# http://www.w3.org/TR/rdf-mt/#RDFSRules
 rdfs1 = Rule({(uuu, aaa, llp)},
              {(llp.nnn, RDF.type, RDFS.Literal)}, name='rdfs1')
 rdfs2 = Rule({(aaa, RDFS.domain, xxx), (uuu, aaa, yyy)},
@@ -141,9 +142,37 @@ RDFS_ENTAILMENT = Entailment(
      (cmp, RDFS.domain, RDFS.Resource),
      (cmp, RDFS.range, RDFS.Resource)])
 
+# Extensional entailment rules
+# http://www.w3.org/TR/rdf-mt/#RDFSExtRules
+ext1 = Rule({(uuu, RDFS.domain, vvv), (vvv, RDFS.subClassOf, zzz)},
+            {(uuu, RDFS.domain, zzz)}, name='ext1')
+ext2 = Rule({(uuu, RDFS.range, vvv), (vvv, RDFS.subClassOf, zzz)},
+            {(uuu, RDFS.range, zzz)}, name='ext2')
+ext3 = Rule({(uuu, RDFS.domain, vvv), (www, RDFS.subPropertyOf, uuu)},
+            {(www, RDFS.domain, vvv)}, name='ext3')
+ext4 = Rule({(uuu, RDFS.range, vvv), (www, RDFS.subPropertyOf, uuu)},
+            {(www, RDFS.range, vvv)}, name='ext4')
+ext5 = Rule({(RDF.type, RDFS.subPropertyOf, www), (www, RDFS.domain, vvv)},
+            {(RDFS.Resource, RDFS.subClassOf, vvv)}, name='ext5')
+ext6 = Rule({(RDFS.subClassOf, RDFS.subPropertyOf, www),
+             (www, RDFS.domain, vvv)},
+            {(RDFS.Class, RDFS.subClassOf, vvv)}, name='ext6')
+ext7 = Rule({(RDFS.subPropertyOf, RDFS.subPropertyOf, www),
+             (www, RDFS.domain, vvv)},
+            {(RDF.Property, RDFS.subClassOf, vvv)}, name='ext7')
+ext8 = Rule({(RDFS.subClassOf, RDFS.subPropertyOf, www),
+             (www, RDFS.range, vvv)},
+            {(RDFS.Class, RDFS.subClassOf, vvv)}, name='ext8')
+ext9 = Rule({(RDFS.subPropertyOf, RDFS.subPropertyOf, www),
+             (www, RDFS.range, vvv)},
+            {(RDF.Property, RDFS.subClassOf, vvv)}, name='ext9')
+
+EXTENSIONAL_ENTAILMENT = Entailment(RDFS_ENTAILMENT.rules +
+    [ext1, ext2, ext3, ext4, ext5, ext6, ext7, ext8, ext9],
+    RDFS_ENTAILMENT.axioms)
+
 # Datatype entailment rules
 # http://www.w3.org/TR/rdf-mt/#DtypeRules
-
 rdfD1 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},
              {(llt.nnn, RDF.type, llt.ddd)}, name='rdfD1')
 #rdfD2 = Rule({(ddd, RDF.type, RDFS.Datatype), (uuu, aaa, llt)},

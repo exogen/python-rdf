@@ -6,7 +6,8 @@ from rdf.graph import Graph
 from rdf.testcases.test import Test
 from rdf.syntax.exceptions import ParseError
 from rdf.semantics.entailment import Entailment, SIMPLE_ENTAILMENT, \
-    SIMPLE_ENTAILMENT_LG, RDF_ENTAILMENT, RDFS_ENTAILMENT, DATATYPE_ENTAILMENT
+    SIMPLE_ENTAILMENT_LG, RDF_ENTAILMENT, RDFS_ENTAILMENT, \
+    EXTENSIONAL_ENTAILMENT, DATATYPE_ENTAILMENT
 from util import TESTS
 
 

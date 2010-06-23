@@ -17,11 +17,17 @@ class Type:
     def __init__(self, class_set):
         if isinstance(class_set, type):
             class_set = (class_set,)
-        self.class_set = frozenset(class_set)
+        self.class_set = set(class_set)
         self.blank_node = self.nnn = BlankNodeDescriptor(self)
 
+    def __repr__(self):
+        return "Type({!r})".format(self.class_set)
+
     def __contains__(self, obj):
-        return isinstance(obj, tuple(self.class_set))
+        if not isinstance(obj, Type):
+            return isinstance(obj, tuple(self.class_set))
+        else:
+            return obj.class_set <= self.class_set
 
     def __lt__(self, other):
         return hash(self) < hash(other)
@@ -34,11 +40,16 @@ class ContainerMembershipPropertyType(Type):
         super().__init__(URI)
 
     def __contains__(self, obj):
-        if super().__contains__(obj):
+        if isinstance(obj, ContainerMembershipPropertyType):
+            return True
+        elif super().__contains__(obj):
             head, sep, tail = obj.rpartition('_')
             return head == RDF and tail.isdigit()
         else:
             return False
+
+    def __repr__(self):
+        return "<ContainerMembershipPropertyType {rdf:_1, rdf:_2, ...}>"
 
 class DatatypeDescriptor(TypeDescriptor):
     def __call__(self, obj, context):
@@ -69,10 +80,10 @@ class TypedLiteralType(LiteralType):
         super(LiteralType, self).__init__(TypedLiteral)
         if datatype is None:
             datatype = UniversalSet()
-        elif isinstance(datatype, str):
-            datatype = frozenset((datatype,))
-        if not isinstance(datatype, frozenset):
-            datatype = frozenset(datatype)
+        elif isinstance(datatype, (str, Type)):
+            datatype = {datatype}
+        if not isinstance(datatype, (set, frozenset)):
+            datatype = set(datatype)
         self.datatype_set = datatype
         self.datatype = self.ddd = DatatypeDescriptor(self)
 
@@ -85,9 +96,9 @@ class PlainLiteralType(LiteralType):
         if language is None:
             language = UniversalSet()
         elif isinstance(language, str):
-            language = frozenset((language,))
-        if not isinstance(language, frozenset):
-            language = frozenset(language)
+            language = {language}
+        if not isinstance(language, (set, frozenset)):
+            language = set(language)
         self.language_set = language
 
     def __contains__(self, obj):
@@ -106,12 +117,15 @@ ddd = Type(URI)
 eee = Type(URI)
 uuu = Type({URI, BlankNode})
 vvv = Type({URI, BlankNode})
+www = Type({URI, BlankNode})
+zzz = Type({URI, BlankNode})
 xxx = Type({URI, BlankNode, Literal})
 yyy = Type({URI, BlankNode, Literal})
 lll = Type(Literal)
 llp = PlainLiteralType()
 llt = TypedLiteralType()
 lls = TypedLiteralType(XSD.string)
+lld = TypedLiteralType(ddd)
 llx = WellTypedXMLLiteralType()
 cmp = ContainerMembershipPropertyType()
 

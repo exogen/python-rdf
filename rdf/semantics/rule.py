@@ -2,7 +2,8 @@ from collections import defaultdict
 from itertools import product
 
 from rdf.blanknode import BlankNode
-from rdf.semantics.type import Type, TypeDescriptor, TypedLiteralType
+from rdf.semantics.type import Type, TypeDescriptor, TypedLiteralType, cmp
+from rdf.namespace import RDFS
 
 
 class Context:
@@ -39,9 +40,12 @@ class Rule:
                     for binding in candidate:
                         for type_, token in binding.items():
                             merged_token = merged_binding.get(type_)
-                            if (merged_token is not None and
-                                merged_token != token):
-                                break
+                            if merged_token is not None:
+                                if isinstance(token, Type):
+                                    if merged_token not in token:
+                                        break
+                                elif merged_token != token:
+                                    break
                         else:
                             merged_binding.update(binding)
                             continue
