@@ -69,6 +69,8 @@ class TestType(unittest.TestCase):
 class TestTypedLiteralType(unittest.TestCase):
     def setUp(self):
         self.typed_literal = TypedLiteralType()
+        self.string_literal = TypedLiteralType({XSD.string})
+        self.literal_descriptor = self.string_literal.literal()
         self.context = Context()
 
     def test_has_datatype_type_descriptor(self):
@@ -79,6 +81,27 @@ class TestTypedLiteralType(unittest.TestCase):
         literal = TypedLiteral('1.5', XSD.float)
         self.assertEqual(self.typed_literal.datatype(literal, self.context),
                          XSD.float)
+
+    def test_datatype_set_constrains_matched_tokens(self):
+        float_literal = TypedLiteral('1.5', XSD.float)
+        string_literal = TypedLiteral('1.5', XSD.string)
+        self.assertTrue(float_literal in self.typed_literal)
+        self.assertFalse(float_literal in self.string_literal)
+        self.assertTrue(string_literal in self.string_literal)
+
+    def test_calling_literal_returns_descriptor(self):
+        self.assert_(isinstance(self.literal_descriptor, TypeDescriptor))
+
+    def test_calling_literal_descriptor_returns_plain_literal(self):
+        literal = TypedLiteral('1.5', XSD.float)
+        self.assertEqual(self.literal_descriptor(literal, self.context),
+                         PlainLiteral('1.5'))
+
+    def test_calling_literal_descriptor_with_datatype_returns_typed_literal(self):
+        literal = PlainLiteral('1.5')
+        literal_descriptor = self.string_literal.literal(XSD.decimal)
+        self.assertEqual(literal_descriptor(literal, self.context),
+                         TypedLiteral('1.5', XSD.decimal))
 
 class TestContainerMembershipPropertyType(unittest.TestCase):
     def setUp(self):
