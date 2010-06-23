@@ -55,11 +55,13 @@ class LiteralDescriptor(TypeDescriptor):
             return TypedLiteral(obj.lexical_form, self.datatype)
 
 class TypedLiteralType(Type):
-    def __init__(self, datatype_set=()):
+    def __init__(self, datatype=None):
         super().__init__(TypedLiteral)
-        if isinstance(datatype_set, str):
-            datatype_set = {datatype_set}
-        self.datatype_set = set(datatype_set)
+        if datatype is None:
+            datatype = ()
+        elif isinstance(datatype, str):
+            datatype = {datatype}
+        self.datatype_set = set(datatype)
         self.datatype = self.ddd = DatatypeDescriptor(self)
 
     def __contains__(self, obj):

@@ -4,7 +4,7 @@ from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.literal import PlainLiteral, TypedLiteral
 from rdf.semantics.type import Type, TypeDescriptor, \
-    TypedLiteralType, ContainerMembershipPropertyType
+    PlainLiteralType, TypedLiteralType, ContainerMembershipPropertyType
 from rdf.semantics.rule import Context
 from rdf.namespace import RDF, XSD
 
@@ -68,26 +68,31 @@ class TestType(unittest.TestCase):
 
 class TestTypedLiteralType(unittest.TestCase):
     def setUp(self):
-        self.typed_literal = TypedLiteralType()
-        self.string_literal = TypedLiteralType({XSD.string})
-        self.literal_descriptor = self.string_literal.literal()
+        self.type = TypedLiteralType()
+        self.string_type = TypedLiteralType(XSD.string)
+        self.literal_descriptor = self.string_type.literal()
         self.context = Context()
 
+    def test_matches_only_typed_literals(self):
+        self.assertFalse(BlankNode() in self.type)
+        self.assertFalse(URI('test') in self.type)
+        self.assertFalse(PlainLiteral('1.5') in self.type)
+        self.assertFalse(PlainLiteral('1.5', 'en') in self.type)
+        self.assert_(TypedLiteral('1.5', XSD.float) in self.type)
+        self.assert_(TypedLiteral('1.5', XSD.string) in self.type)
+
+    def test_datatype_contrains_matched_literals(self):
+        self.assertFalse(TypedLiteral('1.5', XSD.float) in self.string_type)
+        self.assert_(TypedLiteral('1.5', XSD.string) in self.string_type)
+
     def test_has_datatype_type_descriptor(self):
-        self.assert_(isinstance(self.typed_literal.datatype, TypeDescriptor))
-        self.assert_(self.typed_literal.datatype is self.typed_literal.ddd)
+        self.assert_(isinstance(self.type.datatype, TypeDescriptor))
+        self.assert_(self.type.datatype is self.type.ddd)
 
     def test_calling_datatype_with_instance_returns_datatype(self):
         literal = TypedLiteral('1.5', XSD.float)
-        self.assertEqual(self.typed_literal.datatype(literal, self.context),
+        self.assertEqual(self.type.datatype(literal, self.context),
                          XSD.float)
-
-    def test_datatype_set_constrains_matched_tokens(self):
-        float_literal = TypedLiteral('1.5', XSD.float)
-        string_literal = TypedLiteral('1.5', XSD.string)
-        self.assertTrue(float_literal in self.typed_literal)
-        self.assertFalse(float_literal in self.string_literal)
-        self.assertTrue(string_literal in self.string_literal)
 
     def test_calling_literal_returns_descriptor(self):
         self.assert_(isinstance(self.literal_descriptor, TypeDescriptor))
@@ -99,7 +104,7 @@ class TestTypedLiteralType(unittest.TestCase):
 
     def test_calling_literal_descriptor_with_datatype_returns_typed_literal(self):
         literal = PlainLiteral('1.5')
-        literal_descriptor = self.string_literal.literal(XSD.decimal)
+        literal_descriptor = self.string_type.literal(XSD.decimal)
         self.assertEqual(literal_descriptor(literal, self.context),
                          TypedLiteral('1.5', XSD.decimal))
 
