@@ -66,6 +66,30 @@ class TestType(unittest.TestCase):
         self.assertNotEqual(self.predicates > self.subjects,
                             self.predicates < self.subjects)
 
+class TestPlainLiteralType(unittest.TestCase):
+    def setUp(self):
+        self.type = PlainLiteralType()
+        self.en_type = PlainLiteralType(language='en')
+        self.simple_type = PlainLiteralType(language={None})
+
+    def test_matches_only_plain_literals(self):
+        self.assertFalse(BlankNode() in self.type)
+        self.assertFalse(URI('test') in self.type)
+        self.assertFalse(TypedLiteral('1.5', XSD.string) in self.type)
+        self.assertFalse(TypedLiteral('1.5', XSD.float) in self.type)
+        self.assert_(PlainLiteral('1.5') in self.type)
+        self.assert_(PlainLiteral('1.5', 'en') in self.type)
+
+    def test_with_language_matches_only_plain_literals_with_language(self):
+        self.assertFalse(PlainLiteral('1.5') in self.en_type)
+        self.assertFalse(PlainLiteral('1.5', 'es') in self.en_type)
+        self.assert_(PlainLiteral('1.5', 'en') in self.en_type)
+
+    def test_with_none_language_set_matches_only_simple_literals(self):
+        self.assert_(PlainLiteral('1.5') in self.simple_type)
+        self.assertFalse(PlainLiteral('1.5', 'es') in self.simple_type)
+        self.assertFalse(PlainLiteral('1.5', 'en') in self.simple_type)
+
 class TestTypedLiteralType(unittest.TestCase):
     def setUp(self):
         self.type = TypedLiteralType()

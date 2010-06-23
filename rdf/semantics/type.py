@@ -2,6 +2,7 @@ from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.literal import Literal, PlainLiteral, TypedLiteral, is_well_typed_xml
 from rdf.namespace import RDF, XSD
+from rdf.util import UniversalSet
 
 
 class TypeDescriptor:
@@ -58,15 +59,16 @@ class TypedLiteralType(Type):
     def __init__(self, datatype=None):
         super().__init__(TypedLiteral)
         if datatype is None:
-            datatype = ()
+            datatype = UniversalSet()
         elif isinstance(datatype, str):
-            datatype = {datatype}
-        self.datatype_set = set(datatype)
+            datatype = frozenset((datatype,))
+        if not isinstance(datatype, frozenset):
+            datatype = frozenset(datatype)
+        self.datatype_set = datatype
         self.datatype = self.ddd = DatatypeDescriptor(self)
 
     def __contains__(self, obj):
-        return (super().__contains__(obj) and
-                (not self.datatype_set or obj.datatype in self.datatype_set))
+        return super().__contains__(obj) and obj.datatype in self.datatype_set
 
     def literal(self, datatype=None):
         return LiteralDescriptor(self, datatype)
@@ -74,8 +76,18 @@ class TypedLiteralType(Type):
     sss = literal
 
 class PlainLiteralType(Type):
-    def __init__(self):
+    def __init__(self, language=None):
         super().__init__(PlainLiteral)
+        if language is None:
+            language = UniversalSet()
+        elif isinstance(language, str):
+            language = frozenset((language,))
+        if not isinstance(language, frozenset):
+            language = frozenset(language)
+        self.language_set = language
+
+    def __contains__(self, obj):
+        return super().__contains__(obj) and obj.language in self.language_set
 
     def literal(self, datatype=None):
         return LiteralDescriptor(self, datatype)
