@@ -55,9 +55,18 @@ class LiteralDescriptor(TypeDescriptor):
         else:
             return TypedLiteral(obj.lexical_form, self.datatype)
 
-class TypedLiteralType(Type):
+class LiteralType(Type):
+    def __init__(self):
+        super().__init__(Literal)
+
+    def literal(self, datatype=None):
+        return LiteralDescriptor(self, datatype)
+
+    sss = literal
+
+class TypedLiteralType(LiteralType):
     def __init__(self, datatype=None):
-        super().__init__(TypedLiteral)
+        super(LiteralType, self).__init__(TypedLiteral)
         if datatype is None:
             datatype = UniversalSet()
         elif isinstance(datatype, str):
@@ -70,14 +79,9 @@ class TypedLiteralType(Type):
     def __contains__(self, obj):
         return super().__contains__(obj) and obj.datatype in self.datatype_set
 
-    def literal(self, datatype=None):
-        return LiteralDescriptor(self, datatype)
-
-    sss = literal
-
-class PlainLiteralType(Type):
+class PlainLiteralType(LiteralType):
     def __init__(self, language=None):
-        super().__init__(PlainLiteral)
+        super(LiteralType, self).__init__(PlainLiteral)
         if language is None:
             language = UniversalSet()
         elif isinstance(language, str):
@@ -88,11 +92,6 @@ class PlainLiteralType(Type):
 
     def __contains__(self, obj):
         return super().__contains__(obj) and obj.language in self.language_set
-
-    def literal(self, datatype=None):
-        return LiteralDescriptor(self, datatype)
-
-    sss = literal
 
 class WellTypedXMLLiteralType(Type):
     def __init__(self):
