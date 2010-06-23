@@ -6,7 +6,7 @@ from rdf.graph import Graph
 from rdf.testcases.test import Test
 from rdf.syntax.exceptions import ParseError
 from rdf.semantics.entailment import Entailment, SIMPLE_ENTAILMENT, \
-    RDF_ENTAILMENT, RDFS_ENTAILMENT, DATATYPE_ENTAILMENT
+    SIMPLE_ENTAILMENT_LG, RDF_ENTAILMENT, RDFS_ENTAILMENT, DATATYPE_ENTAILMENT
 from util import TESTS
 
 
@@ -76,7 +76,7 @@ class NegativeParserTestCase(ParserTestCase):
                 pass
 
 class EntailmentTestCase(RDFTestCase):
-    ENTAILMENT_RULES = {TEST.SimpleEntailment: SIMPLE_ENTAILMENT,
+    ENTAILMENT_RULES = {TEST.simpleEntailment: SIMPLE_ENTAILMENT_LG,
                         RDF: RDF_ENTAILMENT,
                         RDFS: RDFS_ENTAILMENT,
                         TESTS['datatypes#']: DATATYPE_ENTAILMENT}
@@ -94,14 +94,19 @@ class EntailmentTestCase(RDFTestCase):
         for rules_uri in self.test.entailment_rules:
             entailment = self.ENTAILMENT_RULES[rules_uri]
             self.entailments.append(entailment)
-        if SIMPLE_ENTAILMENT not in self.entailments:
-            self.entailments.append(SIMPLE_ENTAILMENT)
+        if (SIMPLE_ENTAILMENT not in self.entailments and
+            SIMPLE_ENTAILMENT_LG not in self.entailments):
+            self.entailments.append(SIMPLE_ENTAILMENT_LG)
 
         self.merged_entailment = Entailment()
         for entailment in self.entailments:
             self.merged_entailment.conditions += entailment.conditions
-            self.merged_entailment.axioms += entailment.axioms
+            self.merged_entailment.axioms |= entailment.axioms
             self.merged_entailment.rules += entailment.rules
+
+        self.merged_entailment.axioms |= {
+            (datatype, RDF.type, RDFS.Datatype) for datatype in
+            self.test.datatype_support}
 
         if self.test.conclusion_document.type != TEST['False-Document']:
             self.conclusion = Graph(
