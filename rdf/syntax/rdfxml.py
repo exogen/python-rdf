@@ -216,7 +216,7 @@ class RDFXMLReader:
         # 7.2.16 Production literalPropertyElt
         datatype = element.get(QName(RDF, 'datatype'))
         if datatype is not None:
-            object_ = TypedLiteral(element.text, datatype)
+            object_ = TypedLiteral(element.text, URI(datatype))
         else:
             object_ = PlainLiteral(element.text, element.language)
         triple = (parent.subject, element.uri, object_)
