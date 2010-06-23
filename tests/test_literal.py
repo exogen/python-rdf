@@ -141,6 +141,14 @@ class TestTypedLiteral(unittest.TestCase):
     def test_datatype_is_required(self):
         self.assertRaises(TypeError, TypedLiteral, "1")
 
+    def test_datatype_must_be_a_string(self):
+        self.assertRaises(TypeError, TypedLiteral, "1", b"string")
+
+    def test_datatype_is_converted_to_uri(self):
+        literal = TypedLiteral("1", "string")
+        self.assert_(isinstance(literal.datatype, URI))
+        self.assertEqual(literal.datatype, URI("string"))
+
     def test_repr_shows_constructor(self):
         self.assertEqual(repr(self.literal), "TypedLiteral('1', {!r})".format(XSD.string))
 

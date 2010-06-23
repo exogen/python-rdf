@@ -84,7 +84,12 @@ class TypedLiteral(Literal):
 
     def __init__(self, lexical_form, datatype):
         super().__init__(lexical_form)
-        self.datatype = datatype
+        if isinstance(datatype, str):
+            if not isinstance(datatype, URI):
+                datatype = URI(datatype)
+            self.datatype = datatype
+        else:
+            raise TypeError("datatype must be a string")
 
     def __repr__(self):
         return "TypedLiteral({!r}, {!r})".format(self.lexical_form,
