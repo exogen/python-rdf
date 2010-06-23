@@ -278,17 +278,18 @@ class Graph(set):
                 if comparator(a_signature, b_signature):
                     candidates[a_bnode].add(b_bnode)
 
-        product_args = [[(a_bnode, b_bnode) for b_bnode in b_bnodes]
-                        for a_bnode, b_bnodes in candidates.items()]
-        for pairs in product(*product_args):
-            bijection = {}
-            for a_bnode, b_bnode in pairs:
-                if a_bnode not in bijection:
-                    bijection[a_bnode] = b_bnode
+        if candidates:
+            product_args = [[(a_bnode, b_bnode) for b_bnode in b_bnodes]
+                            for a_bnode, b_bnodes in candidates.items()]
+            for pairs in product(*product_args):
+                bijection = {}
+                for a_bnode, b_bnode in pairs:
+                    if a_bnode not in bijection:
+                        bijection[a_bnode] = b_bnode
+                    else:
+                        break
                 else:
-                    break
-            else:
-                yield bijection
+                    yield bijection
 
     def _apply_bijection(self, bijection, triples):
         for subject, predicate, object_ in triples:
