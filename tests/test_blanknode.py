@@ -44,6 +44,26 @@ class TestBlankNode(unittest.TestCase):
     def test_compares_less_than_typed_literal(self):
         self.assert_(self.bnode < Literal("0", XSD.integer))
 
+    def test_compares_less_than_blank_node_with_lesser_hash(self):
+        bnode = BlankNode()
+        self.assertEqual(bnode < self.bnode, hash(bnode) < hash(self.bnode))
+
+    def test_does_not_compare_less_than_same_bnode(self):
+        self.assertFalse(self.bnode < self.bnode)
+
+    def test_compares_less_than_or_equal_to_same_bnode(self):
+        self.assert_(self.bnode <= self.bnode)
+        
+    def test_compares_greater_than_blank_node_with_greater_hash(self):
+        bnode = BlankNode()
+        self.assertEqual(bnode > self.bnode, hash(bnode) > hash(self.bnode))
+
+    def test_does_not_compare_greater_than_same_bnode(self):
+        self.assertFalse(self.bnode > self.bnode)
+
+    def test_compares_greater_than_or_equal_to_same_bnode(self):
+        self.assert_(self.bnode >= self.bnode)
+
 class TestBlankNodeWithNodeID(unittest.TestCase):
     def setUp(self):
         self.bnode = BlankNode('b1')
