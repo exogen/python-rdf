@@ -1,5 +1,6 @@
 import unittest
 import operator
+from decimal import Decimal
 
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
@@ -245,4 +246,39 @@ class TestLiteral(unittest.TestCase):
     def test_constructor_with_uri_creates_typed_literal(self):
         literal = Literal("cat", XSD.string)
         self.assert_(isinstance(literal, TypedLiteral))
+
+class TestStringTypedLiteral(unittest.TestCase):
+    def setUp(self):
+        self.literal_1 = TypedLiteral("test", XSD.string)
+        self.literal_2 = TypedLiteral("0", XSD.string)
+
+    def test_calling_value_returns_lexical_form(self):
+        self.assertEqual(self.literal_1.value(), "test")
+        self.assertEqual(self.literal_2.value(), "0")
+
+class TestIntegerTypedLiteral(unittest.TestCase):
+    def setUp(self):
+        self.literal_1 = TypedLiteral("1", XSD.integer)
+        self.literal_2 = TypedLiteral("010", XSD.integer)
+        self.literal_3 = TypedLiteral("-42", XSD.integer)
+        self.literal_4 = TypedLiteral("+500", XSD.integer)
+
+    def test_calling_value_returns_int(self):
+        self.assertEqual(self.literal_1.value(), 1)
+        self.assertEqual(self.literal_2.value(), 10)
+        self.assertEqual(self.literal_3.value(), -42)
+        self.assertEqual(self.literal_4.value(), 500)
+
+class TestDecimalTypedLiteral(unittest.TestCase):
+    def setUp(self):
+        self.literal_1 = TypedLiteral("1.0000", XSD.decimal)
+        self.literal_2 = TypedLiteral("010", XSD.decimal)
+        self.literal_3 = TypedLiteral("-42", XSD.decimal)
+        self.literal_4 = TypedLiteral("+12345.67890", XSD.decimal)
+
+    def test_calling_value_returns_int(self):
+        self.assertEqual(self.literal_1.value(), Decimal('1'))
+        self.assertEqual(self.literal_2.value(), Decimal('10'))
+        self.assertEqual(self.literal_3.value(), Decimal('-42'))
+        self.assertEqual(self.literal_4.value(), Decimal('12345.67890'))
 

@@ -1,10 +1,12 @@
 import io
+from decimal import Decimal
 
 import lxml.etree
 
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.namespace import XSD
+from rdf.exceptions import UnsupportedDatatype, InvalidLexicalForm
 
 
 class Literal:
@@ -79,6 +81,10 @@ class PlainLiteral(Literal):
         else:
             return super().__gt__(other)
 
+LEXICAL_VALUE_MAP = {XSD.string: str,
+                     XSD.integer: int,
+                     XSD.decimal: Decimal}
+
 class TypedLiteral(Literal):
     __slots__ = 'datatype'
 
@@ -118,6 +124,16 @@ class TypedLiteral(Literal):
             return self.lexical_form > other.lexical_form
         else:
             return super().__gt__(other)
+
+    def value(self, lexical_value_map=LEXICAL_VALUE_MAP):
+        parser = lexical_value_map.get(self.datatype)
+        if parser is not None:
+            try:
+                return parser(self.lexical_form)
+            except Exception as e:
+                raise InvalidLexicalForm(self.lexical_form) from e
+        else:
+            raise UnsupportedDatatype(self.datatype)
 
 def is_well_typed_xml(str_or_literal):
     if isinstance(str_or_literal, Literal):
