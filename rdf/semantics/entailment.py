@@ -46,6 +46,8 @@ SIMPLE_ENTAILMENT = Entailment([se1, se2])
 # Literal generalization rule
 lg = Rule({(uuu, aaa, lll)}, {(uuu, aaa, lll.nnn)}, name='lg')
 
+SIMPLE_ENTAILMENT_LG = Entailment([lg])
+
 # RDF entailment rules
 # http://www.w3.org/TR/rdf-mt/#RDFRules
 rdf1 = Rule({(uuu, aaa, yyy)}, {(aaa, RDF.type, RDF.Property)}, name='rdf1')
