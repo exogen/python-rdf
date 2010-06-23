@@ -20,3 +20,6 @@ RDFS = Namespace('http://www.w3.org/2000/01/rdf-schema#')
 TEST = Namespace('http://www.w3.org/2000/10/rdf-tests/rdfcore/testSchema#')
 XML = Namespace('http://www.w3.org/XML/1998/namespace')
 XSD = Namespace('http://www.w3.org/2001/XMLSchema#')
+OWL = Namespace('http://www.w3.org/2002/07/owl#')
+FN = Namespace('http://www.w3.org/2005/xpath-functions#')
+
