@@ -22,6 +22,12 @@ class Type:
     def __contains__(self, obj):
         return isinstance(obj, tuple(self.class_set))
 
+    def __lt__(self, other):
+        return hash(self) < hash(other)
+
+    def __gt__(self, other):
+        return hash(self) > hash(other)
+
 class ContainerMembershipPropertyType(Type):
     def __init__(self):
         super().__init__(URI)

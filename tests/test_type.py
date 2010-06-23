@@ -52,6 +52,20 @@ class TestType(unittest.TestCase):
         bnode_2 = self.subjects.blank_node(URI('test'), context)
         self.assertNotEqual(bnode_1, bnode_2)
 
+    def test_types_are_orderable(self):
+        self.subjects < self.predicates
+        self.subjects > self.predicates
+
+    def test_type_ordering_is_consistent(self):
+        self.assertEqual(self.subjects < self.predicates,
+                         self.predicates > self.subjects)
+        self.assertEqual(self.subjects > self.predicates,
+                         self.predicates < self.subjects)
+        self.assertNotEqual(self.subjects < self.predicates,
+                            self.subjects > self.predicates)
+        self.assertNotEqual(self.predicates > self.subjects,
+                            self.predicates < self.subjects)
+
 class TestTypedLiteralType(unittest.TestCase):
     def setUp(self):
         self.typed_literal = TypedLiteralType()
