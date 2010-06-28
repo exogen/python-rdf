@@ -4,6 +4,6 @@ class RDFException(Exception):
 class UnsupportedDatatype(RDFException):
     pass
 
-class InvalidLexicalForm(RDFException):
+class IllTypedLiteral(RDFException):
     pass
 

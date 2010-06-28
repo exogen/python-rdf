@@ -6,7 +6,7 @@ import lxml.etree
 from rdf.blanknode import BlankNode
 from rdf.uri import URI
 from rdf.namespace import XSD
-from rdf.exceptions import UnsupportedDatatype, InvalidLexicalForm
+from rdf.exceptions import UnsupportedDatatype, IllTypedLiteral
 
 
 class Literal:
@@ -131,7 +131,7 @@ class TypedLiteral(Literal):
             try:
                 return parser(self.lexical_form)
             except Exception as e:
-                raise InvalidLexicalForm(self.lexical_form) from e
+                raise IllTypedLiteral(self) from e
         else:
             raise UnsupportedDatatype(self.datatype)
 

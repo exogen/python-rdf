@@ -2,6 +2,8 @@ from collections import defaultdict
 from itertools import product
 
 from rdf.blanknode import BlankNode
+from rdf.literal import TypedLiteral
+from rdf.exceptions import UnsupportedDatatype, IllTypedLiteral
 from rdf.semantics.type import Type, TypeDescriptor, TypedLiteralType, cmp
 from rdf.namespace import RDFS
 
@@ -63,7 +65,14 @@ class Pattern(tuple):
             if isinstance(type_or_token, Type):
                 if token not in type_or_token:
                     return False
-            elif token != type_or_token:
+            elif type_or_token != token:
+                if (isinstance(type_or_token, TypedLiteral) and
+                    isinstance(token, TypedLiteral)):
+                    try:
+                        if type_or_token.value() == token.value():
+                            continue
+                    except (UnsupportedDatatype, IllTypedLiteral):
+                        pass
                 return False
         return True
 
